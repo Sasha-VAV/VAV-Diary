@@ -1,5 +1,8 @@
+import com.android.builder.model.JavaCompileOptions
+
 plugins {
     id("com.android.application")
+    //id("androidx.room")
 }
 
 android {
@@ -12,6 +15,10 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
+        /*JavaCompileOptions{
+            annotationProcessorsOptions
+        }*/
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,6 +39,10 @@ android {
 }
 
 dependencies {
+    implementation("com.google.android.material:material:1.11.0")
+
+    implementation("androidx.room:room-runtime:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
 
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
