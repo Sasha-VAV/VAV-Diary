@@ -13,20 +13,47 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.app.posts.Post;
+import com.example.app.users.User;
+import com.example.app.users.UserRepository;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainActivity extends AppCompatActivity {
-    //public static Handler handler;
+    private int id;
     private int key;
     public static boolean isLogged;
     public final static String NAME_SP = "1";
+    private User user;
+    private UserRepository userRepository;
+    private final ExecutorService executorService = Executors.newFixedThreadPool(2);
     private boolean logIn(){
         SharedPreferences sharedPreferences = getSharedPreferences(NAME_SP, MODE_PRIVATE);
+        id = sharedPreferences.getInt("id",-1);
         key = sharedPreferences.getInt("key",-1);
         Log.d("ok2", String.valueOf(key));
-        if (key == -1)
+        if (key == -1 || id == -1)
             return false;
+        //TODO GET USER
 
-        //Toast.makeText(MainActivity.this, key, Toast.LENGTH_SHORT).show();
+        userRepository = new UserRepository(getApplication());
+
+        AtomicBoolean ok = new AtomicBoolean(false);
+        AtomicBoolean isEnded = new AtomicBoolean(false);
+        Runnable findUser = new Runnable() {
+            @Override
+            public void run() {
+                user = userRepository.findById(id);
+                if (user == null)
+                    ok.set(false);
+                isEnded.set(true);
+            }
+        };
+        executorService.execute(findUser);
+        while (!isEnded.get()){
+
+        }
         return true;
     }
 
@@ -49,17 +76,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Button sendButton = findViewById(R.id.sendButton);
-        EditText editText = findViewById(R.id.header_title);
-        EditText editText1 = findViewById(R.id.text);
-        EditText editText2 = findViewById(R.id.edTag);
+        EditText edHeader = findViewById(R.id.header_title);
+        EditText edText = findViewById(R.id.text);
+        EditText edTag = findViewById(R.id.edTag);
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Post post = new Post(editText.getText().toString()
-                        , editText2.getText().toString()
-                        , editText1.getText().toString());
-                int id = post.sendPost(key);
+                //int id = user.getPostLinkedList().size();
+                int author = Math.abs(id) - Math.abs(key);
+                Post post = new Post(id, author, edHeader.getText().toString()
+                        , edTag.getText().toString()
+                        , edText.getText().toString());
+
+
+
                 if (id != -1){
                     Intent intent = new Intent(MainActivity.this, PostActivity.class);
                     intent.putExtra("key", key);

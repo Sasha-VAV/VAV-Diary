@@ -80,7 +80,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         TextView name = findViewById(R.id.name);
         while (!ok.get()){
-            try {
+            /*try {
                 name.setText(".");
                 TimeUnit.MILLISECONDS.sleep(500);
                 name.setText("..");
@@ -89,7 +89,7 @@ public class ProfileActivity extends AppCompatActivity {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
-            }
+            }*/
         }
 
 

@@ -21,12 +21,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app.users.User;
+import com.example.app.users.UserManager;
 import com.example.app.users.UserRepository;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class RegisterActivity extends AppCompatActivity {
+    private UserManager userManager = new UserManager(getApplication());
     String s;
     private UserRepository userRepository;
     private final ExecutorService executorService = Executors.newFixedThreadPool(2);
