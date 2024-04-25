@@ -1,18 +1,17 @@
 package com.example.app;
 
-import static com.example.app.DiaryActivity.currentPost;
+import static com.example.app.Diary.DiaryActivity.currentPost;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
+import com.example.app.Diary.DiaryActivity;
 
 public class PostActivity extends AppCompatActivity {
     private int key;
@@ -32,6 +31,8 @@ public class PostActivity extends AppCompatActivity {
         textTime.setText(currentPost.getTime());
         textHead.setText(currentPost.getHead());
         text.setText(currentPost.getText());
+        ImageButton imageButton = findViewById(R.id.imgButton);
+        imageButton.setEnabled(false);
 
         ImageButton returnButton = findViewById(R.id.returnButton);
         returnButton.setOnClickListener(new View.OnClickListener() {

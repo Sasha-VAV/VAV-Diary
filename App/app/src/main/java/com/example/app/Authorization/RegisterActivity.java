@@ -1,31 +1,21 @@
-package com.example.app;
+package com.example.app.Authorization;
 
-
-import static com.example.app.MainActivity.NAME_SP;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.app.users.User;
+import com.example.app.MainActivity;
+import com.example.app.Profile.ProfileActivity;
+import com.example.app.R;
 import com.example.app.users.UserManager;
-import com.example.app.users.UserRepository;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class RegisterActivity extends AppCompatActivity {
     private UserManager userManager;

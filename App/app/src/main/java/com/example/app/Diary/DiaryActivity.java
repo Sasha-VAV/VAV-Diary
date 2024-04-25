@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.app.Diary;
 
 import static com.example.app.MainActivity.user;
 
@@ -6,31 +6,41 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.app.MainActivity;
+import com.example.app.PostActivity;
+import com.example.app.Profile.ProfileActivity;
+import com.example.app.R;
+import com.example.app.days.Day;
+import com.example.app.days.DayFragment;
+import com.example.app.days.DayManager;
 import com.example.app.posts.Post;
-import com.example.app.posts.PostFragment;
 import com.example.app.posts.PostManager;
+import com.example.app.searchEngineAndStats.SearchInfo;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class DiaryActivity extends AppCompatActivity {
     private PostManager postManager;
+    private DayManager dayManager;
+    private ArrayList<Day> days;
+    private ArrayList<Post> posts;
     public static Post currentPost;
     public static boolean postIsClicked;
     private final ExecutorService executorService = Executors.newFixedThreadPool(2);
+    private SearchInfo searchInfo;
+    private DayFragment dayFragment;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,17 +51,18 @@ public class DiaryActivity extends AppCompatActivity {
 
         postManager = new PostManager(getApplication(), user);
         TextView tx = findViewById(R.id.tx);
+        tx.setEnabled(false);
         EditText ed = findViewById(R.id.ed);
-        //tx.setText(user.getPostIds());
-        //Post post = postManager.findPostById(2);
-        //tx.setText(post.toString());
-        //tx.setText(postManager.getUserPosts(-1).toString());
+        dayManager = new DayManager(postManager.getUserPosts(-1));
+        days = dayManager.getDays();
 
-        PostFragment postFragment = new PostFragment(postManager.getUserPosts(-1), getApplication());
+        posts = postManager.getUserPosts(-1);
+        searchInfo = new SearchInfo(posts);
+        dayFragment = new DayFragment(days, getApplication());
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        if (!postFragment.isAdded())
-            ft.add(R.id.fr1, postFragment);
+        if (!dayFragment.isAdded())
+            ft.add(R.id.fr1, dayFragment);
         ft.commit();
         Runnable onPostListener = new Runnable() {
             @Override
@@ -89,30 +100,16 @@ public class DiaryActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 try{
-                    Post post = postManager.findPostByAuthorN(Integer.parseInt(s.toString()), user.getId());
-                    tx.setText(post.toString());
-
-                    //--------------------------------------
-                    /*
-
-                    TextView textView = findViewById(R.id.text);
-                    TextView textTime = findViewById(R.id.textTime);
-                    textTime.setText(post.getTime());
-                    textView.setText(post.getHead());
-                    textView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            currentPost = post;
-                            Intent intent = new Intent(DiaryActivity.this, PostActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-
-                     */
-                    //--------------------------------------
+                    dayManager = new DayManager(searchInfo.findWithText(s.toString()));
+                    days = dayManager.getDays();
+                    dayFragment = new DayFragment(days, getApplication());
+                    FragmentManager fm = getSupportFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.fr1, dayFragment);
+                    ft.commit();
                 }
-                catch (Exception ignored){
-                    tx.setText("Unlucky");
+                catch (Exception e){
+                    tx.setText(e.toString());
                 }
             }
         });

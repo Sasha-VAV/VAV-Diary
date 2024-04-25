@@ -1,5 +1,7 @@
 package com.example.app.posts;
 
+import android.location.Location;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -24,6 +26,10 @@ public class Post {
     private LocalDateTime localDateTime;
     private String dt;
     private ArrayList<String> fullPost;
+    private String keywords = "";
+    private String photoURL = "Is not working rn, it was a bad idea";
+    private String l = "";
+    private Location location;
     public Post(int id, int author, String allFields){
         this.id = id;
         this.author = author;
@@ -61,12 +67,17 @@ public class Post {
         fullPost.add(head);
         fullPost.add(tag);
         fullPost.add(text);
+        fullPost.add(photoURL);
+        fullPost.add(l);
 
         allFields = "";
         allFields += "/.dt/" + fullPost.get(0) + " " + fullPost.get(1) + "/.endDt/";
         allFields += "/.head/" + fullPost.get(2)+"/.endHead/";
         allFields += "/.tag/" + fullPost.get(3)+ "/.endTag/";
         allFields += "/.text/" + fullPost.get(4)+ "/.endText/";
+        allFields += "/.photoURL/" + fullPost.get(5)+ "/.endPhotoURL/";
+        allFields += "/.location/" + fullPost.get(6)+ "/.endLocation/";
+        createKeywords();
     }
     public void fillAllFields(){
         String allFields = this.allFields;
@@ -75,6 +86,8 @@ public class Post {
         this.head = allFields.substring(allFields.indexOf("/.head/") + 7, allFields.indexOf("/.endHead/"));
         this.tag = allFields.substring(allFields.indexOf("/.tag/") + 6, allFields.indexOf("/.endTag/"));
         this.text = allFields.substring(allFields.indexOf("/.text/") + 7, allFields.indexOf("/.endText/"));
+        this.photoURL = allFields.substring(allFields.indexOf("/.photoURL/") + 7, allFields.indexOf("/.endPhotoURL/"));
+        this.l = allFields.substring(allFields.indexOf("/.location/") + 7, allFields.indexOf("/.endLocation/"));
 
         fullPost = new ArrayList<>();
         fullPost.add(dt.substring(0, dt.indexOf(" ")));
@@ -82,6 +95,10 @@ public class Post {
         fullPost.add(head);
         fullPost.add(tag);
         fullPost.add(text);
+        fullPost.add(photoURL);
+        fullPost.add(l);
+
+        createKeywords();
     }
 
     public ArrayList<String> getFullPost(int author) {
@@ -105,19 +122,6 @@ public class Post {
 
     @Override
     public String toString() {
-//        return "Post{" +
-//                "id=" + id +
-//                ", author=" + author +
-//                ", allFields='" + allFields + '\'' +
-//                ", head='" + head + '\'' +
-//                ", tag='" + tag + '\'' +
-//                ", text='" + text + '\'' +
-//                ", dtf=" + dtf +
-//                ", zonedDateTime=" + zonedDateTime +
-//                ", localDateTime=" + localDateTime +
-//                ", dt='" + dt + '\'' +
-//                ", fullPost=" + fullPost +
-//                '}';
         return fullPost.toString();
     }
 
@@ -141,5 +145,16 @@ public class Post {
     }
     public String getTime() {
         return dt.substring((dt.indexOf(" ") + 1));
+    }
+    public void createKeywords(){
+        keywords = head + tag + text + dt;
+        keywords = keywords.toLowerCase();
+    }
+
+    public String getKeywords() {
+        return keywords;
+    }
+    public boolean hasKeywords(String text){
+        return keywords.contains(text);
     }
 }

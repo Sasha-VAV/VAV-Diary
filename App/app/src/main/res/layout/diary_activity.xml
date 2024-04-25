@@ -5,11 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DiaryActivity">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp">
-    </LinearLayout>
+    tools:context=".Diary.DiaryActivity">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,35 +13,24 @@
     </EditText>
     <TextView
         android:id="@+id/tx"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </TextView>
 
     <!-- -->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:text="00.00.00"
-        android:id="@+id/textDate">
-    </TextView>
     <LinearLayout
+        android:id="@+id/testId"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="400dp">
-        <LinearLayout
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#808080"
-            android:layout_marginRight="1dp">
-        </LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_weight="1">
         <FrameLayout
             android:id="@+id/fr1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name = "com.example.app.posts.PostFragment">
+            android:name = "com.example.app.posts.DayFragment">
 
         </FrameLayout>
     </LinearLayout>
@@ -56,7 +41,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:gravity="center|bottom">
         <ImageButton
             android:layout_margin="10dp"

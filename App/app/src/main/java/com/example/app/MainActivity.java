@@ -3,28 +3,24 @@ package com.example.app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
+import com.example.app.Authorization.WelcomeActivity;
+import com.example.app.Diary.DiaryActivity;
+import com.example.app.Profile.ProfileActivity;
 import com.example.app.posts.Post;
 import com.example.app.posts.PostManager;
 import com.example.app.users.User;
 import com.example.app.users.UserManager;
-import com.example.app.users.UserRepository;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainActivity extends AppCompatActivity {
     public static User user;
     public final static String NAME_SP = "1";
+    public static boolean isSaveLocation = false;
     private PostManager postManager;
 
     @Override
@@ -47,9 +43,6 @@ public class MainActivity extends AppCompatActivity {
         EditText edHeader = findViewById(R.id.header_title);
         EditText edText = findViewById(R.id.text);
         EditText edTag = findViewById(R.id.edTag);
-        edHeader.setText("test2");
-        edText.setText("test2t");
-        edTag.setText("#test2");
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
                 String sH = edHeader.getText().toString()
                         , sTe = edText.getText().toString()
                         , sTa = edTag.getText().toString();
+                if (sH.equals(""))
+                    sH = "No Name";
                 Post post = new Post(user.getId(), sH, sTa, sTe);
                 postManager.createPost(post);
                 user = userManager.refreshUser();
@@ -67,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
         });
         ImageButton toHomeButton = findViewById(R.id.toHome)
                 , toDiaryButton = findViewById(R.id.toDiary)
-                , toProfileButton = findViewById(R.id.toProfile);
+                , toProfileButton = findViewById(R.id.toProfile)
+                , toProfileSettingsButton = findViewById(R.id.postSettings);
         toHomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +82,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+        toProfileSettingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PostSettingsActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.app.Profile;
 
 import static com.example.app.MainActivity.NAME_SP;
 import static com.example.app.MainActivity.user;
@@ -6,7 +6,6 @@ import static com.example.app.MainActivity.user;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,15 +16,12 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.app.users.User;
+import com.example.app.Authorization.WelcomeActivity;
+import com.example.app.Diary.DiaryActivity;
+import com.example.app.MainActivity;
+import com.example.app.R;
+import com.example.app.searchEngineAndStats.SearchInfo;
 import com.example.app.users.UserManager;
-import com.example.app.users.UserRepository;
-
-import java.util.Timer;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ProfileActivity extends AppCompatActivity {
     private int id;
@@ -42,6 +38,9 @@ public class ProfileActivity extends AppCompatActivity {
             user.setPostIds("");
         }
         name.setText(user.getName());
+        TextView textNumOfPosts = findViewById(R.id.NumOfPosts);
+        SearchInfo searchInfo = new SearchInfo(user.getPostIds());
+        textNumOfPosts.setText(searchInfo.getStats().get(0));
 
         Button settingsButton = findViewById(R.id.SettingsButton);
         ImageButton toHomeButton = findViewById(R.id.toHome)
