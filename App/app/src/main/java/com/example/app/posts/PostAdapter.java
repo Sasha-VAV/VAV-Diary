@@ -1,5 +1,9 @@
 package com.example.app.posts;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.app.Application;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.app.DiaryActivity;
+import com.example.app.PostActivity;
 import com.example.app.R;
 
 import java.util.ArrayList;
@@ -15,9 +21,11 @@ import java.util.ArrayList;
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
 
     ArrayList<Post> posts = new ArrayList<>();
+    Application application;
 
-    public PostAdapter(ArrayList<Post> posts) {
+    public PostAdapter(ArrayList<Post> posts, Application application) {
         this.posts = posts;
+        this.application = application;
     }
 
     @NonNull
@@ -34,6 +42,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
         Post post = posts.get(position);
         holder.head.setText(post.getHead());
         holder.time.setText(post.getTime());
+        holder.head.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DiaryActivity.currentPost = post;
+                DiaryActivity.postIsClicked = true;
+            }
+        });
     }
 
     @Override
@@ -47,6 +62,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
             super(itemView);
             time = itemView.findViewById(R.id.textTime);
             head = itemView.findViewById(R.id.header_title);
+
         }
     }
 }

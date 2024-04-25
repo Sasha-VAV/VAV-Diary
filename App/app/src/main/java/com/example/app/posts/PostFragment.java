@@ -1,5 +1,6 @@
 package com.example.app.posts;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +17,11 @@ import java.util.ArrayList;
 
 public class PostFragment extends Fragment {
     private ArrayList<Post> posts;
+    private Application application;
 
-    public PostFragment(ArrayList<Post> posts) {
+    public PostFragment(ArrayList<Post> posts, Application application) {
         this.posts = posts;
+        this.application = application;
     }
 
     @Override
@@ -35,7 +38,7 @@ public class PostFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.post_fragment, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.dayRV);
-        PostAdapter postAdapter = new PostAdapter(posts);
+        PostAdapter postAdapter = new PostAdapter(posts, application);
 
         recyclerView.setAdapter(postAdapter);
 

@@ -23,9 +23,14 @@ import com.example.app.posts.Post;
 import com.example.app.posts.PostFragment;
 import com.example.app.posts.PostManager;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class DiaryActivity extends AppCompatActivity {
     private PostManager postManager;
     public static Post currentPost;
+    public static boolean postIsClicked;
+    private final ExecutorService executorService = Executors.newFixedThreadPool(2);
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +47,27 @@ public class DiaryActivity extends AppCompatActivity {
         //tx.setText(post.toString());
         //tx.setText(postManager.getUserPosts(-1).toString());
 
-        PostFragment postFragment = new PostFragment(postManager.getUserPosts(-1));
+        PostFragment postFragment = new PostFragment(postManager.getUserPosts(-1), getApplication());
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         if (!postFragment.isAdded())
             ft.add(R.id.fr1, postFragment);
         ft.commit();
+        Runnable onPostListener = new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    while (!postIsClicked){
+
+                    }
+                    postIsClicked = false;
+                    Intent intent = new Intent(DiaryActivity.this, PostActivity.class);
+                    startActivity(intent);
+                }
+            }
+        };
+        executorService.execute(onPostListener);
+
 
         ed.addTextChangedListener(new TextWatcher() {
             @Override
