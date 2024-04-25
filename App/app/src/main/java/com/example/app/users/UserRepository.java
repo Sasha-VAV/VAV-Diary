@@ -19,4 +19,7 @@ public class UserRepository {
     public User findById(int id){
         return userDAO.findById(id);
     }
+    public void update(User user){
+        userDAO.update(user);
+    }
 }

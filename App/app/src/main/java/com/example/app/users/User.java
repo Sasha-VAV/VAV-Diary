@@ -6,9 +6,11 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.example.app.posts.Post;
+import com.example.app.posts.PostManager;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -64,15 +66,7 @@ public class User {
     public void insertPostId(int id){
         this.postIds += "{"+id +"}";
     }
-    /*public ArrayList<Integer> getPostIds(){
-        ArrayList<Integer> result = new ArrayList<>();
-        String s = postIds;
-        while (s.indexOf("}") > 0){
-            result.add(Integer.valueOf(s.substring(1, s.indexOf("}"))));
-            s = s.substring(s.indexOf("}") + 1);
-        }
-        return result;*
-    }*/
+
 
 
 }

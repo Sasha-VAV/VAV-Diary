@@ -6,6 +6,9 @@ import androidx.room.Room;
 
 import com.example.app.users.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PostRepository {
     private final PostDAO postDAO;
 
@@ -15,10 +18,17 @@ public class PostRepository {
         postDAO = db.postDAO();
     }
 
-    public void insert(PostForDB postForDB){
-        postDAO.insert(postForDB);
+    public int insert(PostForDB postForDB){
+        postForDB.setId((int) postDAO.insert(postForDB));
+        return postForDB.getId();
     }
     public PostForDB findById(int id){
         return postDAO.findById(id);
     }
+
+    public ArrayList<PostForDB> findByAuthor(int author){
+        ArrayList<PostForDB> result = new ArrayList<>(postDAO.findByAuthor(author));
+        return result;
+    }
+
 }

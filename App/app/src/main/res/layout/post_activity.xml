@@ -25,7 +25,7 @@
                     android:background="@drawable/small_buttons">
                 </ImageButton>
                 <LinearLayout
-                    android:gravity="right"
+                    android:gravity="end"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageButton

@@ -3,6 +3,7 @@ package com.example.app.users;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 @Dao
 public interface UserDAO {
@@ -11,5 +12,8 @@ public interface UserDAO {
 
     @Insert
     void insert(User user);
+
+    @Update
+    void update(User user);
 
 }

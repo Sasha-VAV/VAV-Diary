@@ -28,14 +28,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class RegisterActivity extends AppCompatActivity {
-    private UserManager userManager = new UserManager(getApplication());
+    private UserManager userManager;
     String s;
-    private UserRepository userRepository;
-    private final ExecutorService executorService = Executors.newFixedThreadPool(2);
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
+
+        userManager = new UserManager(getApplication());
+
         Button registerButton = findViewById(R.id.RegisterButton);
         EditText loginEd = findViewById(R.id.loginEd)
                 , passwordEd = findViewById(R.id.passwordEd)
@@ -47,44 +48,28 @@ public class RegisterActivity extends AppCompatActivity {
             s = (String) extras.get("LP");
             loginEd.setText(s.substring(0,s.indexOf('|')));
             passwordEd.setText(s.substring(s.indexOf('|') + 1));
-            Log.d("ok1", s);
         }
-
-        userRepository = new UserRepository(getApplication());
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO SAVE NAME TAG
-
-                String s1 = String.valueOf(loginEd.getText());
-                String s2 = String.valueOf(passwordEd.getText());
-                SharedPreferences.Editor editor = getSharedPreferences(NAME_SP, MODE_PRIVATE).edit();
-                Log.d("ok4", String.valueOf(s.hashCode()));
-                editor.putInt("key", s2.hashCode());
-                editor.putInt("id", s1.hashCode());
-                editor.apply();
-                //TODO DB
-
-                User user = new User(s1.hashCode(), s2.hashCode(), nametagEd.getText().toString());
-
                 try{
-                    executorService.execute(() -> userRepository.insert(user));
+                    userManager.saveUserInCache(String.valueOf(loginEd.getText()).hashCode(),
+                            String.valueOf(passwordEd.getText()).hashCode()
+                    , String.valueOf(nametagEd.getText()));
+                    Exception exception = new Exception();
+                    if (!userManager.createUser(userManager.getCurrentUser()))
+                        Toast.makeText(RegisterActivity.this, "This login already exists", Toast.LENGTH_SHORT).show();
+                    else{
+                        MainActivity.user = userManager.getCurrentUser();
+                        Intent intent = new Intent(RegisterActivity.this, ProfileActivity.class);
+                        startActivity(intent);
+                    }
                 }
-                catch (Exception ignored){
+                catch (Exception exception){
                     Toast.makeText(RegisterActivity.this, "This login already exists", Toast.LENGTH_SHORT).show();
                 }
 
-
-
-                //END of db
-                //Toast.makeText(RegisterActivity.this, "Signed up as\n"+userRepository.findById(s.hashCode()), Toast.LENGTH_SHORT).show();
-
-                MainActivity.isLogged = true;
-                Intent intent = new Intent(RegisterActivity.this, ProfileActivity.class);
-                intent.putExtra("key", s2.hashCode());
-                intent.putExtra("id", user.getId());
-                startActivity(intent);
             }
         });
         ImageButton returnButton = findViewById(R.id.returnButton);
