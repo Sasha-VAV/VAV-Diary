@@ -2,13 +2,16 @@ package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Application;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.example.app.Actions.ActionsActivity;
 import com.example.app.Authorization.WelcomeActivity;
 import com.example.app.Diary.DiaryActivity;
 import com.example.app.Profile.ProfileActivity;
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public final static String NAME_SP = "1";
     public static boolean isSaveLocation = false;
     private PostManager postManager;
+    public static Application application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences sharedPreferences = getSharedPreferences(NAME_SP, MODE_PRIVATE);
+        if (sharedPreferences!= null){
+            isSaveLocation = sharedPreferences.getBoolean("loc", false);
+        }
+
+        application = getApplication();
         UserManager userManager = new UserManager(getApplication());
         if (user == null && userManager.getUserFromCache() == null) {
             Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
@@ -89,6 +99,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, PostSettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+        Button toActionsButton = findViewById(R.id.importantActions);
+        toActionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ActionsActivity.class);
                 startActivity(intent);
             }
         });

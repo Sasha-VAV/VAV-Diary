@@ -38,6 +38,5 @@ public class SearchInfo {
         }
         return result;
     }
-    //TODO stats + nav butt + edit post / del post + icons + location + camera
-    // stats 1 Num of posts 2
+    //TODO nav butt + icons + location + server. AND MAYBE edit post / del post  + camera
 }

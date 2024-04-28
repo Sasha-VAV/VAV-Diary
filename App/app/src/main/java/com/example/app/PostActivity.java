@@ -3,17 +3,19 @@ package com.example.app;
 import static com.example.app.Diary.DiaryActivity.currentPost;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app.Diary.DiaryActivity;
 
-public class PostActivity extends AppCompatActivity {
+public class PostActivity extends AppCompatActivity{
     private int key;
     private int id;
     @Override
@@ -32,9 +34,30 @@ public class PostActivity extends AppCompatActivity {
         textHead.setText(currentPost.getHead());
         text.setText(currentPost.getText());
         ImageButton imageButton = findViewById(R.id.imgButton);
+        imageButton.setVisibility(View.INVISIBLE);
         imageButton.setEnabled(false);
+        TextView textLocation = findViewById(R.id.textLocation);
+        textLocation.setText(currentPost.getL());
 
         ImageButton returnButton = findViewById(R.id.returnButton);
+        textLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = currentPost.getL();
+                String latitude = s.substring(s.indexOf(" ") + 1,s.indexOf("Lo"));
+                String longitude = s.substring(s.indexOf(" ", 15));
+                String label = "This location";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("geo:" + latitude + "," + longitude + "?q=" + latitude + "," + longitude + "(" + label + ")"));
+                try{
+                    startActivity(intent);
+                }
+                catch (Exception ignored){
+                    Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT ).show();
+                    // Handle the case where Google Maps is not installed
+                }
+            }
+        });
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

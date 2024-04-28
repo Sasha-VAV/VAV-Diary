@@ -1,15 +1,22 @@
 package com.example.app.posts;
 
+import android.content.Context;
 import android.location.Location;
+import android.location.LocationManager;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.app.MainActivity;
+import com.example.app.PostSettingsActivity;
+
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import javax.crypto.spec.GCMParameterSpec;
 
 
 public class Post {
@@ -59,7 +66,24 @@ public class Post {
         localDateTime = LocalDateTime.now();
         setAllFields();
     }
+
+    public String getL() {
+        if (l.indexOf("|") > 0){
+            //TODO FIX FROM HERE
+            String s = "Latitude: " + l.substring(0, l.indexOf("|")) + "\nLongitude: " + l.substring(l.indexOf("|") + 1);
+            return s;
+        }
+        else
+            return "No location data";
+    }
+
     public void setAllFields(){
+        if (MainActivity.isSaveLocation){
+            LocationManager locationManager = (LocationManager) MainActivity.application.getSystemService(Context.LOCATION_SERVICE);
+            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            l = location.getLatitude() + "|" + location.getLongitude();
+        }
+
         dt = dtf.format(localDateTime);
         fullPost = new ArrayList<>();
         fullPost.add(dt.substring(0, dt.indexOf(" ")));
@@ -86,8 +110,14 @@ public class Post {
         this.head = allFields.substring(allFields.indexOf("/.head/") + 7, allFields.indexOf("/.endHead/"));
         this.tag = allFields.substring(allFields.indexOf("/.tag/") + 6, allFields.indexOf("/.endTag/"));
         this.text = allFields.substring(allFields.indexOf("/.text/") + 7, allFields.indexOf("/.endText/"));
-        this.photoURL = allFields.substring(allFields.indexOf("/.photoURL/") + 7, allFields.indexOf("/.endPhotoURL/"));
-        this.l = allFields.substring(allFields.indexOf("/.location/") + 7, allFields.indexOf("/.endLocation/"));
+        if (allFields.indexOf("/.photoURL") == -1 || allFields.indexOf("/.endPhotoURL") == -1)
+            this.photoURL = "";
+        else
+            this.photoURL = allFields.substring(allFields.indexOf("/.photoURL/") + 7, allFields.indexOf("/.endPhotoURL/"));
+        if (allFields.indexOf("/.location") == -1 || allFields.indexOf("/.endLocation") == -1)
+            this.l = "";
+        else
+            this.l = allFields.substring(allFields.indexOf("/.location/") + 11, allFields.indexOf("/.endLocation/"));
 
         fullPost = new ArrayList<>();
         fullPost.add(dt.substring(0, dt.indexOf(" ")));

@@ -93,6 +93,15 @@
                 android:text="This is corgi"
                 android:textColor="@color/black">
             </TextView>
+            <TextView
+                android:id="@+id/textLocation"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="This is corgi"
+                android:textColor="@color/black">
+            </TextView>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

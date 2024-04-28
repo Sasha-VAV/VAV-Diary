@@ -27,4 +27,10 @@ public class DayManager {
     public ArrayList<Day> getDays() {
         return days;
     }
+
+    public String getLastNDays(int n) {
+
+        //TODO this method
+        return "hey";
+    }
 }
