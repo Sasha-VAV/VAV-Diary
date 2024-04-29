@@ -33,9 +33,9 @@ public class PostActivity extends AppCompatActivity{
         textTime.setText(currentPost.getTime());
         textHead.setText(currentPost.getHead());
         text.setText(currentPost.getText());
-        ImageButton imageButton = findViewById(R.id.imgButton);
-        imageButton.setVisibility(View.INVISIBLE);
-        imageButton.setEnabled(false);
+        //ImageButton imageButton = findViewById(R.id.imgButton);
+
+
         TextView textLocation = findViewById(R.id.textLocation);
         textLocation.setText(currentPost.getL());
 
@@ -46,7 +46,7 @@ public class PostActivity extends AppCompatActivity{
                 String s = currentPost.getL();
                 String latitude = s.substring(s.indexOf(" ") + 1,s.indexOf("Lo"));
                 String longitude = s.substring(s.indexOf(" ", 15));
-                String label = "This location";
+                String label = "Вы были здесь " + currentPost.getDate() +" в " + currentPost.getTime() + "\n" + currentPost.getHead();
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("geo:" + latitude + "," + longitude + "?q=" + latitude + "," + longitude + "(" + label + ")"));
                 try{

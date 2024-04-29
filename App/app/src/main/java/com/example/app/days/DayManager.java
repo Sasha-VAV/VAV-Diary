@@ -23,14 +23,35 @@ public class DayManager {
             days.add(new Day(oneDayPosts.get(0).getDate(), oneDayPosts));
         }
     }
+    public DayManager(int n, ArrayList<Day> days){
+        ArrayList<Day> result = new ArrayList<>();
+        if (n < 1)
+            n = 7;
+        if (days.size() - n < 0)
+            n = days.size();
+        for (int i = days.size() - n; i < days.size(); i++){
+            result.add(days.get(i));
+        }
+        this.days = result;
+    }
 
     public ArrayList<Day> getDays() {
         return days;
     }
 
     public String getLastNDays(int n) {
-
+        DayManager dayManager = new DayManager(n, days);
         //TODO this method
-        return "hey";
+        return dayManager.toString();
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        for (Day day :
+                days) {
+            s += day.toString();
+        }
+        return s;
     }
 }

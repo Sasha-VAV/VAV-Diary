@@ -41,6 +41,7 @@ public class PostSettingsActivity extends AppCompatActivity {
                 if (checkBox.isChecked()){
                     PERMISSIONS.add(Manifest.permission.ACCESS_COARSE_LOCATION);
                     PERMISSIONS.add(Manifest.permission.ACCESS_FINE_LOCATION);
+                    PERMISSIONS.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
                     if (!locationPermissionGranted()){
                         askForPermissions();
                     }

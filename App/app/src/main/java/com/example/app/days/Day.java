@@ -20,4 +20,14 @@ public class Day {
     public ArrayList<Post> getPosts() {
         return posts;
     }
+
+    @Override
+    public String toString() {
+        String s = "\n---------------------------\n" + date;
+        for (Post post :
+                posts) {
+            s += post.toString();
+        }
+        return  s;
+    }
 }

@@ -1,20 +1,32 @@
 package com.example.app.posts;
 
+import static android.content.Context.LOCATION_SERVICE;
+import static com.example.app.MainActivity.application;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.example.app.MainActivity;
 import com.example.app.PostSettingsActivity;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.crypto.spec.GCMParameterSpec;
 
@@ -77,13 +89,24 @@ public class Post {
             return "No location data";
     }
 
+    @SuppressLint("MissingPermission")
     public void setAllFields(){
         if (MainActivity.isSaveLocation){
             LocationManager locationManager = (LocationManager) MainActivity.application.getSystemService(Context.LOCATION_SERVICE);
-            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             l = location.getLatitude() + "|" + location.getLongitude();
-        }
+            /*AtomicBoolean isEnded = new AtomicBoolean(false);
+            FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(application.getApplicationContext());
+            fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
 
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                   location = task.getResult();
+                   l = location.getLatitude() + "|" + location.getLongitude();
+                }
+            });*/
+
+        }
         dt = dtf.format(localDateTime);
         fullPost = new ArrayList<>();
         fullPost.add(dt.substring(0, dt.indexOf(" ")));
@@ -152,7 +175,21 @@ public class Post {
 
     @Override
     public String toString() {
-        return fullPost.toString();
+        String s = "\n";
+        for (String string:
+             fullPost) {
+            if (!Objects.equals(string, "")
+                    && fullPost.indexOf(string) != 0
+                    && !string.contains("URL/Is not")
+                    && !string.contains("No Name")
+                    && !string.equals("#"))
+                s += "\n" + string;
+        }
+        if (s.equals("\n"))
+            s = "\nBlanc post";
+        if (s.length() < 12)
+            s += " Blanc post";
+        return s;
     }
 
     public String getHead() {

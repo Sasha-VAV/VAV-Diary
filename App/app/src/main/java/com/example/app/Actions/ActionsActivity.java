@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,8 +46,22 @@ public class ActionsActivity extends AppCompatActivity {
                 ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clipData = ClipData.newPlainText("Last " + n + " days", dayManager.getLastNDays(n));
                 clipboardManager.setPrimaryClip(clipData);
+                Toast.makeText(getApplicationContext(), "Скопировано!", Toast.LENGTH_SHORT).show();
 
                 //MAYBE TODO SHARE WITH
+            }
+        });
+        ImageButton returnButton = findViewById(R.id.returnButton);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        sendOnServerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO BACKEND
             }
         });
     }
