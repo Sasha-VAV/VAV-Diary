@@ -60,5 +60,12 @@ dependencies {
     androidTestImplementation("androidx.test:rules:1.5.0")
     androidTestImplementation("androidx.test:runner:1.5.2")
 
+    implementation("android.arch.navigation:navigation-fragment:1.0.0")
+    implementation("android.arch.navigation:navigation-ui:1.0.0")
+
+    implementation ("com.google.android.material:material:1.11.0")
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation ("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
+    implementation ("com.google.android.material:material:1.13.0-alpha01")
 
 }

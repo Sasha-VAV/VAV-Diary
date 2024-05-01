@@ -1,12 +1,10 @@
 package com.example.app.users;
 
 import static android.content.Context.MODE_PRIVATE;
-import static androidx.core.content.SharedPreferencesKt.edit;
-import static com.example.app.MainActivity.NAME_SP;
+import static com.example.app.Pages.MainActivity.NAME_SP;
 
 import android.app.Application;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -108,6 +106,7 @@ public class UserManager {
         return user;
     }
     public User getUserFromCache(){
+        //TODO EncryptedSharedPreferences
         SharedPreferences sharedPreferences = application.getSharedPreferences(NAME_SP, MODE_PRIVATE);
         int id = sharedPreferences.getInt("id",-1);
         int key = sharedPreferences.getInt("key",-1);
@@ -116,6 +115,12 @@ public class UserManager {
         }
         user = getUser(id, key);
         return user;
+    }
+    public void clearCache(){
+        SharedPreferences sharedPreferences = application.getSharedPreferences(NAME_SP, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
     }
 
     public boolean addPostId(int id){

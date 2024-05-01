@@ -1,7 +1,7 @@
 package com.example.app.Profile;
 
-import static com.example.app.MainActivity.NAME_SP;
-import static com.example.app.MainActivity.user;
+import static com.example.app.Pages.MainActivity.NAME_SP;
+import static com.example.app.Pages.MainActivity.user;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app.Authorization.WelcomeActivity;
 import com.example.app.Diary.DiaryActivity;
-import com.example.app.MainActivity;
+import com.example.app.Pages.MainActivity;
 import com.example.app.R;
 import com.example.app.searchEngineAndStats.SearchInfo;
 import com.example.app.users.UserManager;

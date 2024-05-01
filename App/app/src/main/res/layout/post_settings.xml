@@ -55,7 +55,7 @@
             <Button
                 android:layout_width="280dp"
                 android:layout_height="70dp"
-                android:background="@drawable/styles"
+                android:background="@drawable/button1"
                 android:text="Отправить"
                 android:id="@+id/sendButton">
             </Button>

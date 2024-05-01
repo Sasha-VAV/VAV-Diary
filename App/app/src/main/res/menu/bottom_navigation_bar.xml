@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/diaryFragment"
+        android:title="@string/diary"
+        android:icon="@drawable/diarynavicon"/>
+    <item
+        android:id="@+id/mainFragment"
+        android:title="@string/create"
+        />
+    <item
+        android:id="@+id/profileFragment"
+        android:title="@string/profile"
+        android:icon="@drawable/profilenavicon"/>
+</menu>

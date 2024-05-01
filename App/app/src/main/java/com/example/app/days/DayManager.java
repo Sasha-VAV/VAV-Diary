@@ -1,5 +1,9 @@
 package com.example.app.days;
 
+import static com.example.app.Pages.MainActivity.application;
+
+import android.widget.Toast;
+
 import com.example.app.posts.Post;
 
 import java.util.ArrayList;
@@ -29,10 +33,12 @@ public class DayManager {
             n = 7;
         if (days.size() - n < 0)
             n = days.size();
-        for (int i = days.size() - n; i < days.size(); i++){
+        for (int i = 0; i < n; i++){
+            Toast.makeText(application, String.valueOf(i), Toast.LENGTH_SHORT).show();
             result.add(days.get(i));
         }
         this.days = result;
+
     }
 
     public ArrayList<Day> getDays() {
@@ -41,7 +47,6 @@ public class DayManager {
 
     public String getLastNDays(int n) {
         DayManager dayManager = new DayManager(n, days);
-        //TODO this method
         return dayManager.toString();
     }
 

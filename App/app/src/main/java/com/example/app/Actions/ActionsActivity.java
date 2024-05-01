@@ -1,6 +1,6 @@
 package com.example.app.Actions;
 
-import static com.example.app.MainActivity.user;
+import static com.example.app.Pages.MainActivity.user;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;

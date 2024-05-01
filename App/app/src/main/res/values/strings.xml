@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">App</string>
+    <string name="app_name">VAV Diary</string>
+    <string name="diary">Дневник</string>
+    <string name="create">Создать</string>
+    <string name="profile">Профиль</string>
+    <string name="sign_in">Войти</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="nameTag">Отображаемое имя</string>
+    <string name="hello_blank_fragment">fix</string>
+    <string name="header">Заголовок</string>
+    <string name="type_smth...">Напишите что-нибудь...</string>
+    <string name="send">Отправить</string>
+    <string name="copy_data_of_past_n_days">Скопировать данные за последние N дней</string>
+    <string name="copy_data">Скопировать данные</string>
+    <string name="save_location">Сохранять геолокацию</string>
 </resources>

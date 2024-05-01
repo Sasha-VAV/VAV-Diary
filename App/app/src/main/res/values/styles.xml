@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="button1">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@drawable/button1</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_width">280dp</item>
+        <item name="android:layout_height">70dp</item>
+    </style>
+    <style name="navigationBar" parent="Widget.Design.NavigationView">
+        <item name="backgroundColor">@color/white</item>
+        <item name="itemTextColor">@color/black</item>
+        <item name="iconTint">@color/black</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+    <style name="appIcon">
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">120dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:src">@drawable/app_icon</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+    <style name="editText">
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_width">268dp</item>
+        <item name="android:layout_height">42dp</item>
+        <item name="android:background">@color/editTextColor</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <style name="loginEditText" parent="editText">
+        <item name="android:hint">@string/login</item>
+    </style>
+    <style name="passwordEditText" parent="editText">
+        <item name="android:hint">@string/password</item>
+        <item name="android:inputType">textPassword</item>
+    </style>
+    <style name="nameTagEditText" parent="editText">
+        <item name="android:hint">@string/nameTag</item>
+    </style>
+    <style name="headerEditText" parent="editText">
+        <item name="android:hint">@string/header</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">225dp</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+    <style name="tagEditText" parent="editText">
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:minWidth">160dp</item>
+        <item name="android:text">#</item>
+        <item name="android:hint">tag</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="descriptionEditText" parent="editText">
+        <item name="android:gravity">top</item>
+        <item name="android:hint">@string/type_smth...</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">200dp</item>
+        <item name="android:layout_margin">30dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="icon">
+        <item name="android:background">@null</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+    <style name="profileIcon" parent="appIcon">
+        <item name="android:src">@drawable/profile_small_pic</item>
+    </style>
+    <style name="returnIcon" parent="icon">
+        <item name="android:src">@drawable/returnbutton</item>
+    </style>
+    <style name="settingsIcon" parent="icon">
+        <item name="android:src">@drawable/settings_button</item>
+    </style>
+    <style name="importantIcon" parent="icon">
+        <item name="android:src">@drawable/warning</item>
+    </style>
+    <style name="plusIcon" parent="icon">
+        <item name="android:src">@drawable/plus</item>
+        <item name="android:layout_height">120dp</item>
+        <item name="android:layout_width">90dp</item>
+    </style>
+    <style name="createIcon" parent="icon">
+        <item name="android:src">@drawable/homepagenavicon</item>
+        <item name="android:layout_height">147dp</item>
+        <item name="android:layout_width">90dp</item>
+    </style>
+</resources>
+
+
+<!-- converter
+s = input()
+while s!="-1":
+    print('<item name="' + s[s.find("android"):s.find("=")] + '">' + s[s.find('"') + 1:-1] + "</item>")
+    s = input()
+-->

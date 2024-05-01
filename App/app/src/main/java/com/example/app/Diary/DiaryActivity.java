@@ -1,6 +1,6 @@
 package com.example.app.Diary;
 
-import static com.example.app.MainActivity.user;
+import static com.example.app.Pages.MainActivity.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.app.MainActivity;
+import com.example.app.Pages.MainActivity;
 import com.example.app.PostActivity;
 import com.example.app.Profile.ProfileActivity;
 import com.example.app.R;

@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.app.MainActivity;
+import com.example.app.Pages.MainActivity;
 import com.example.app.Profile.ProfileActivity;
 import com.example.app.R;
 import com.example.app.users.UserManager;
@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         Button registerButton = findViewById(R.id.RegisterButton);
         EditText loginEd = findViewById(R.id.loginEd)
                 , passwordEd = findViewById(R.id.passwordEd)
-                , nametagEd = findViewById(R.id.nametagEd);
+                , nametagEd = findViewById(R.id.nameTagEd);
 
 
         Bundle extras = getIntent().getExtras();

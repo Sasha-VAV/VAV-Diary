@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.app.Pages.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main"/>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.app.Pages.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_postSettingsFragment"
+            app:destination="@id/postSettingsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_actionsFragment2"
+            app:destination="@id/actionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/diaryFragment"
+        android:name="com.example.app.Pages.DiaryFragment"
+        android:label="fragment_diary"
+        tools:layout="@layout/fragment_diary" >
+        <action
+            android:id="@+id/action_diaryFragment_to_postFragment2"
+            app:destination="@id/postFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.app.Pages.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/actionsFragment"
+        android:name="com.example.app.Pages.ActionsFragment"
+        android:label="fragment_actions"
+        tools:layout="@layout/fragment_actions" />
+    <fragment
+        android:id="@+id/postSettingsFragment"
+        android:name="com.example.app.Pages.PostSettingsFragment"
+        android:label="fragment_post_settings"
+        tools:layout="@layout/fragment_post_settings" />
+    <fragment
+        android:id="@+id/postFragment2"
+        android:name="com.example.app.Pages.PostFragment"
+        android:label="fragment_post2"
+        tools:layout="@layout/fragment_post2" />
+</navigation>

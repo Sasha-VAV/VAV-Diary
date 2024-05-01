@@ -1,6 +1,6 @@
 package com.example.app;
 
-import static com.example.app.Diary.DiaryActivity.currentPost;
+import static com.example.app.Pages.DiaryFragment.currentPost;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,7 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.app.Diary.DiaryActivity;
+import com.example.app.Pages.DiaryFragment;
+import com.example.app.Pages.MainActivity;
+
 
 public class PostActivity extends AppCompatActivity{
     private int key;
@@ -61,7 +63,7 @@ public class PostActivity extends AppCompatActivity{
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PostActivity.this, DiaryActivity.class);
+                Intent intent = new Intent(PostActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

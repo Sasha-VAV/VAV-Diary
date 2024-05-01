@@ -10,12 +10,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app.R;
 
+import java.util.Locale;
+
 public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Locale locale = new Locale("ru");
+        //Locale.setDefault(locale);
+
         setContentView(R.layout.welcome_activity);
-        Button logInButton = findViewById(R.id.LogInButton);
+
+
+        /*Button logInButton = findViewById(R.id.LogInButton);
         Button registerButton = findViewById(R.id.RegisterButton);
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +38,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(WelcomeActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 }

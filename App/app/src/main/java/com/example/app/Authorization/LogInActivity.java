@@ -1,7 +1,7 @@
 package com.example.app.Authorization;
 
 
-import static com.example.app.MainActivity.user;
+import static com.example.app.Pages.MainActivity.user;
 
 import android.content.Intent;
 import android.os.Bundle;

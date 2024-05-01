@@ -4,12 +4,14 @@ import android.app.Application;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.app.Diary.DiaryActivity;
+import com.example.app.Pages.DiaryFragment;
 import com.example.app.R;
 
 import java.util.ArrayList;
@@ -38,11 +40,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
         Post post = posts.get(position);
         holder.head.setText(post.getHead());
         holder.time.setText(post.getTime());
-        holder.head.setOnClickListener(new View.OnClickListener() {
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DiaryActivity.currentPost = post;
-                DiaryActivity.postIsClicked = true;
+                DiaryFragment.currentPost = post;
+                DiaryFragment.postIsClicked = true;
+                Navigation.findNavController(DiaryFragment.view).navigate(R.id.action_diaryFragment_to_postFragment2);
             }
         });
     }
@@ -54,11 +57,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
 
     class PostHolder extends RecyclerView.ViewHolder {
         TextView time, head;
+        LinearLayout linearLayout;
         public PostHolder(@NonNull View itemView) {
             super(itemView);
             time = itemView.findViewById(R.id.textTime);
             head = itemView.findViewById(R.id.header_title);
-
+            linearLayout = itemView.findViewById(R.id.LL);
         }
     }
 }

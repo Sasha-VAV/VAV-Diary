@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Pages.MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left">
+        <ImageButton
+            android:id="@+id/returnButton"
+            style="@style/returnIcon">
+        </ImageButton>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/nDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/copy_data_of_past_n_days">
+        </EditText>
+        <Button
+            android:id="@+id/copyButton"
+            android:text="@string/copy_data"
+            style="@style/button1">
+        </Button>
+    </LinearLayout>
+</LinearLayout>

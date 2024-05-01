@@ -19,7 +19,7 @@
         android:theme="@style/Theme.AppCompat.Light"
         tools:targetApi="tiramisu">
         <activity
-            android:name=".MainActivity"
+            android:name=".Pages.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,41 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Authorization.WelcomeActivity">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:src="@drawable/corgi"
-        android:adjustViewBounds="true">
-    </ImageView>
-    <LinearLayout
+    <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-        <Button
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/styles"
-            android:layout_width="280dp"
-            android:layout_height="70dp"
-            android:id="@+id/LogInButton"
-            android:text="Войти"
-            android:textColor="@color/black"
-            android:textSize="16dp">
-        </Button>
-        <Button
-            android:layout_width="280dp"
-            android:layout_height="70dp"
-            android:background="@drawable/styles"
-            android:id="@+id/RegisterButton"
-            android:text="Зарегистрироваться"
-            android:textColor="@color/black"
-            android:textSize="16dp">
-        </Button>
-    </LinearLayout>
-</LinearLayout>
+        android:id="@+id/reg_graph"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:navGraph = "@navigation/reg_graph"
+        app:defaultNavHost = "true"/>
+</RelativeLayout>

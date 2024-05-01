@@ -7,7 +7,6 @@ import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -16,23 +15,16 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
-import android.content.Intent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
+import com.example.app.Pages.MainActivity;
+
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 public class RegisterTest1 {
 
@@ -66,7 +58,7 @@ public class RegisterTest1 {
         appCompatEditText2.perform(replaceText(password), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.nametagEd),
+                allOf(withId(R.id.nameTagEd),
                         isDisplayed()));
         appCompatEditText3.perform(replaceText(name), closeSoftKeyboard());
 
@@ -103,7 +95,7 @@ public class RegisterTest1 {
         appCompatEditText2.perform(replaceText("test2"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.nametagEd),
+                allOf(withId(R.id.nameTagEd),
                         isDisplayed()));
         appCompatEditText3.perform(replaceText("testName"), closeSoftKeyboard());
 
@@ -125,7 +117,7 @@ public class RegisterTest1 {
         editText2.check(matches(withText("test2")));
 
         ViewInteraction editText3 = onView(
-                allOf(withId(R.id.nametagEd), withText("testName"),
+                allOf(withId(R.id.nameTagEd), withText("testName"),
                         withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class))),
                         isDisplayed()));
         editText3.check(matches(withText("testName")));

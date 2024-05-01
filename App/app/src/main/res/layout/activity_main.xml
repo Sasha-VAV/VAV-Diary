@@ -1,113 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-    <LinearLayout
+    tools:context=".Pages.MainActivity">
+    <fragment
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left">
-
-            <Button
-                android:id="@+id/importantActions"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:background="@drawable/styles"
-                android:text="">
-            </Button>
-
-            <EditText
-                android:hint="Заголовок"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="50dp"
-                android:layout_width="wrap_content"
-                android:minWidth="225dp"
-                android:layout_height="wrap_content"
-                android:textSize="24dp"
-                android:id="@+id/header_title"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right">
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:id="@+id/postSettings">
-                </ImageButton>
-            </LinearLayout>
-        </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="left">
-                <EditText
-                    android:id="@+id/edTag"
-                    android:layout_marginLeft="100dp"
-                    android:layout_width="wrap_content"
-                    android:minWidth="160dp"
-                    android:text="#"
-                    android:hint="tag"
-                    android:layout_height="40dp"
-                    android:textSize="16dp">
-
-                </EditText>
-            </LinearLayout>
-            <EditText
-                android:hint="Описание"
-                android:id="@+id/text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="200dp"
-                android:layout_margin="30dp"
-                android:textSize="16dp"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:gravity="top"
-        android:orientation="vertical">
-        <LinearLayout
+        android:id="@+id/hostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:navGraph = "@navigation/nav_graph"
+        app:defaultNavHost = "true"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_alignBottom="@+id/hostFragment">
+        <RelativeLayout
+            android:layout_alignBottom="@+id/createButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-            <Button
-                android:layout_width="280dp"
-                android:layout_height="70dp"
-                android:background="@drawable/styles"
-                android:text="Отправить"
-                android:id="@+id/sendButton">
-            </Button>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center|bottom">
-            <ImageButton
-                android:layout_margin="10dp"
-                android:layout_width="100dp"
-                android:layout_height="75dp"
-                android:id="@+id/toDiary"/>
-            <ImageButton
-                android:id="@+id/toHome"
-                android:layout_margin="10dp"
-                android:layout_width="100dp"
-                android:layout_height="75dp"/>
-            <ImageButton
-                android:id="@+id/toProfile"
-                android:layout_margin="10dp"
-                android:layout_width="100dp"
-                android:layout_height="75dp"/>
-        </LinearLayout>
+            android:layout_height="100dp">
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNV"
+                style="@style/navigationBar"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:menu="@menu/bottom_navigation_bar"
+                app:itemIconSize="50dp"
+                app:itemIconTint="@color/black"
+                android:background="@color/white"/>
+        </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/createButton"
+            style="@style/createIcon"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true">
+        </ImageButton>
+    </RelativeLayout>
 
 
-    </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

@@ -38,5 +38,5 @@ public class SearchInfo {
         }
         return result;
     }
-    //TODO nav butt + icons + location + server. AND MAYBE edit post / del post  + camera
+    //TODO nav butt + icons + server. AND MAYBE edit post / del post  + camera
 }
