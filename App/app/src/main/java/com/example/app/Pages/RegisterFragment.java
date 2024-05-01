@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.app.Profile.ProfileActivity;
 import com.example.app.R;
 import com.example.app.users.UserManager;
 

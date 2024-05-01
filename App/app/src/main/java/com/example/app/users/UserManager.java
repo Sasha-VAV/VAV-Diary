@@ -5,7 +5,13 @@ import static com.example.app.Pages.MainActivity.NAME_SP;
 
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 
+import androidx.security.crypto.EncryptedSharedPreferences;
+import androidx.security.crypto.MasterKey;
+
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -16,10 +22,30 @@ public class UserManager {
     private UserRepository userRepository;
     private final ExecutorService executorService = Executors.newFixedThreadPool(2);
     private Application application;
+    private MasterKey masterKey;
+    private SharedPreferences sharedPreferences;
 
-    public UserManager(Application application) {
+    public UserManager(Application application){
         userRepository = new UserRepository(application);
         this.application = application;
+
+
+        try {
+            masterKey = new MasterKey.Builder(application.getApplicationContext())
+                    .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+                    .build();
+            sharedPreferences = EncryptedSharedPreferences.create(
+                    application.getApplicationContext(),
+                    "secret_shared_prefs",
+                    masterKey,
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            );
+        }
+        catch (Exception ignored){
+            sharedPreferences = application.getSharedPreferences(NAME_SP, MODE_PRIVATE);
+        }
+
     }
 
     private User findById(int id){
@@ -78,7 +104,7 @@ public class UserManager {
         }
     }
     public void saveUserInCache(int id, int key, String name){
-        SharedPreferences.Editor editor = application.getSharedPreferences(NAME_SP, MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("key", key);
         editor.putInt("id", id);
         editor.apply();
@@ -88,11 +114,10 @@ public class UserManager {
         int key = user.getKey();
         int id = user.getId();
         String name = user.getName();
-        SharedPreferences.Editor editor = application.getSharedPreferences(NAME_SP, MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("key", key);
         editor.putInt("id", id);
         editor.apply();
-        user = new User(id,key,name);
     }
     public User getCurrentUser(){
         return user;
@@ -107,7 +132,6 @@ public class UserManager {
     }
     public User getUserFromCache(){
         //TODO EncryptedSharedPreferences
-        SharedPreferences sharedPreferences = application.getSharedPreferences(NAME_SP, MODE_PRIVATE);
         int id = sharedPreferences.getInt("id",-1);
         int key = sharedPreferences.getInt("key",-1);
         if (id == -1 || key == -1){
@@ -117,7 +141,6 @@ public class UserManager {
         return user;
     }
     public void clearCache(){
-        SharedPreferences sharedPreferences = application.getSharedPreferences(NAME_SP, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();

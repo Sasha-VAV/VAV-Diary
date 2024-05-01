@@ -15,4 +15,5 @@
     <string name="copy_data_of_past_n_days">Скопировать данные за последние N дней</string>
     <string name="copy_data">Скопировать данные</string>
     <string name="save_location">Сохранять геолокацию</string>
+    <string name="wrong_login_or_password">Неверный логин или пароль</string>
 </resources>

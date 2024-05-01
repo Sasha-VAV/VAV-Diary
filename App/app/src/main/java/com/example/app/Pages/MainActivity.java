@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
         application = getApplication();
         UserManager userManager = new UserManager(getApplication());
 
-
-
         if (user == null && userManager.getUserFromCache() == null) {
             Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
             startActivity(intent);

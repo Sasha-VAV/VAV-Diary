@@ -2,14 +2,11 @@ package com.example.app.Pages;
 
 import static com.example.app.Pages.MainActivity.user;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,8 +16,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.app.Diary.DiaryActivity;
-import com.example.app.PostActivity;
 import com.example.app.R;
 import com.example.app.days.Day;
 import com.example.app.days.DayFragment;

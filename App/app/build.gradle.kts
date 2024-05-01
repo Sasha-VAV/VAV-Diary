@@ -68,4 +68,6 @@ dependencies {
     implementation ("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     implementation ("com.google.android.material:material:1.13.0-alpha01")
 
+    implementation ("androidx.security:security-crypto:1.1.0-alpha06")
+    implementation ("androidx.security:security-identity-credential:1.0.0-alpha03")
 }

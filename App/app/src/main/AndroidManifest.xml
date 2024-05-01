@@ -27,28 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Diary.DiaryActivity">
-
-        </activity>
-        <activity android:name=".Profile.ProfileActivity">
-
-        </activity>
-        <activity android:name=".PostActivity">
-
-        </activity>
-        <activity android:name=".Authorization.RegisterActivity">
-
-        </activity>
-        <activity android:name=".Authorization.LogInActivity">
-
-        </activity>
         <activity android:name=".Authorization.WelcomeActivity">
-
-        </activity>
-        <activity android:name=".PostSettingsActivity">
-
-        </activity>
-        <activity android:name=".Actions.ActionsActivity">
 
         </activity>
     </application>

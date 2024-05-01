@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.app.Profile.ProfileActivity;
 import com.example.app.R;
 import com.example.app.users.UserManager;
 
@@ -88,7 +87,7 @@ public class LogInFragment extends Fragment {
                 int key = passwordEd.getText().toString().hashCode();
                 user = userManager.getUser(id, key);
                 if (user == null){
-                    Toast.makeText(getActivity(), "Wrong login or password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.wrong_login_or_password, Toast.LENGTH_SHORT).show();
                 }
                 else{
                     userManager.saveUserInCache(user);

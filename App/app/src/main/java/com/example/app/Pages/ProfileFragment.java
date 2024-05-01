@@ -15,16 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app.Authorization.WelcomeActivity;
-import com.example.app.Diary.DiaryActivity;
-import com.example.app.Profile.ProfileActivity;
 import com.example.app.R;
 import com.example.app.searchEngineAndStats.SearchInfo;
-import com.example.app.users.UserManager;
 
 /**
  * A simple {@link Fragment} subclass.

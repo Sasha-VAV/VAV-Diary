@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/backgroundColor"
-    tools:context=".Profile.ProfileActivity">
+    tools:context=".Pages.MainActivity">
     <LinearLayout
         android:visibility="invisible"
         android:gravity="right"
