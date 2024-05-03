@@ -1,11 +1,14 @@
 package com.example.app.posts;
 
+import static com.example.app.Pages.MainActivity.application;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 
 import com.example.app.Pages.MainActivity;
+import com.example.app.R;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
@@ -64,29 +67,26 @@ public class Post {
 
     public String getL() {
         if (l.indexOf("|") > 0){
-            String s = "Latitude: " + l.substring(0, l.indexOf("|")) + "\nLongitude: " + l.substring(l.indexOf("|") + 1);
+            String s = application.getString(R.string.latitude) + ": " + l.substring(0, l.indexOf("|"))
+                    + "\n"+ application.getString(R.string.longitude) + ": " + l.substring(l.indexOf("|") + 1);
             return s;
         }
         else
-            return "No location data";
+            return application.getString(R.string.location_error);
+    }
+    public String getLatitude(){
+        return  l.substring(0, l.indexOf("|"));
+    }
+    public String getLongitude(){
+        return l.substring(l.indexOf("|") + 1);
     }
 
     @SuppressLint("MissingPermission")
     public void setAllFields(){
         if (MainActivity.isSaveLocation){
-            LocationManager locationManager = (LocationManager) MainActivity.application.getSystemService(Context.LOCATION_SERVICE);
+            LocationManager locationManager = (LocationManager) application.getSystemService(Context.LOCATION_SERVICE);
             location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             l = location.getLatitude() + "|" + location.getLongitude();
-            /*AtomicBoolean isEnded = new AtomicBoolean(false);
-            FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(application.getApplicationContext());
-            fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-
-                @Override
-                public void onComplete(@NonNull Task<Location> task) {
-                   location = task.getResult();
-                   l = location.getLatitude() + "|" + location.getLongitude();
-                }
-            });*/
 
         }
         dt = dtf.format(localDateTime);
@@ -115,11 +115,11 @@ public class Post {
         this.head = allFields.substring(allFields.indexOf("/.head/") + 7, allFields.indexOf("/.endHead/"));
         this.tag = allFields.substring(allFields.indexOf("/.tag/") + 6, allFields.indexOf("/.endTag/"));
         this.text = allFields.substring(allFields.indexOf("/.text/") + 7, allFields.indexOf("/.endText/"));
-        if (allFields.indexOf("/.photoURL") == -1 || allFields.indexOf("/.endPhotoURL") == -1)
+        if (!allFields.contains("/.photoURL") || !allFields.contains("/.endPhotoURL"))
             this.photoURL = "";
         else
             this.photoURL = allFields.substring(allFields.indexOf("/.photoURL/") + 7, allFields.indexOf("/.endPhotoURL/"));
-        if (allFields.indexOf("/.location") == -1 || allFields.indexOf("/.endLocation") == -1)
+        if (!allFields.contains("/.location") || !allFields.contains("/.endLocation"))
             this.l = "";
         else
             this.l = allFields.substring(allFields.indexOf("/.location/") + 11, allFields.indexOf("/.endLocation/"));
@@ -163,14 +163,14 @@ public class Post {
             if (!Objects.equals(string, "")
                     && fullPost.indexOf(string) != 0
                     && !string.contains("URL/Is not")
-                    && !string.contains("No Name")
+                    && !string.contains(application.getString(R.string.no_name))
                     && !string.equals("#"))
                 s += "\n" + string;
         }
         if (s.equals("\n"))
-            s = "\nBlanc post";
+            s = "\n" + application.getString(R.string.void_post);
         if (s.length() < 12)
-            s += " Blanc post";
+            s += " " + application.getString(R.string.void_post);
         return s;
     }
 

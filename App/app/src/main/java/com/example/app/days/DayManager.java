@@ -34,7 +34,6 @@ public class DayManager {
         if (days.size() - n < 0)
             n = days.size();
         for (int i = 0; i < n; i++){
-            Toast.makeText(application, String.valueOf(i), Toast.LENGTH_SHORT).show();
             result.add(days.get(i));
         }
         this.days = result;

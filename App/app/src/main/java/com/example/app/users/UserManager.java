@@ -12,6 +12,7 @@ import androidx.security.crypto.MasterKey;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -107,6 +108,7 @@ public class UserManager {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("key", key);
         editor.putInt("id", id);
+        //editor.putBoolean("firstTime", true);
         editor.apply();
         user = new User(id,key,name);
     }
@@ -117,6 +119,7 @@ public class UserManager {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("key", key);
         editor.putInt("id", id);
+        //editor.putBoolean("firstTime", true);
         editor.apply();
     }
     public User getCurrentUser(){
@@ -131,7 +134,6 @@ public class UserManager {
         return user;
     }
     public User getUserFromCache(){
-        //TODO EncryptedSharedPreferences
         int id = sharedPreferences.getInt("id",-1);
         int key = sharedPreferences.getInt("key",-1);
         if (id == -1 || key == -1){
@@ -139,6 +141,15 @@ public class UserManager {
         }
         user = getUser(id, key);
         return user;
+    }
+    public ArrayList<Boolean> getConfigFromCache(){
+        ArrayList<Boolean> arrayList = new ArrayList<>();
+        boolean firstTime = sharedPreferences.getBoolean("firstTime", false);
+        //SharedPreferences.Editor editor = sharedPreferences.edit();
+        //editor.remove("firstTime");
+        //editor.apply();
+        arrayList.add(firstTime);
+        return arrayList;
     }
     public void clearCache(){
         SharedPreferences.Editor editor = sharedPreferences.edit();

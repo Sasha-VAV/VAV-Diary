@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="24sp"
-            android:text="Sashavav">
+            android:text="@string/sashavav">
         </TextView>
         <Button
             android:id="@+id/SettingsButton"
@@ -50,7 +50,7 @@
             android:layout_height="45dp"
             android:layout_marginTop="30dp"
             android:background="#C5C5C5"
-            android:text="Выйти из аккаунта">
+            android:text="@string/log_out">
         </Button>
 
 

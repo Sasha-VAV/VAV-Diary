@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/RV"
     tools:context=".Pages.MainActivity">
     <fragment
         android:layout_width="match_parent"
@@ -13,9 +14,10 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:navGraph = "@navigation/nav_graph"
         app:defaultNavHost = "true"/>
+
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="124dp"
         android:layout_alignBottom="@+id/hostFragment">
         <RelativeLayout
             android:layout_alignBottom="@+id/createButton"
@@ -35,7 +37,7 @@
         <ImageButton
             android:id="@+id/createButton"
             style="@style/createIcon"
-            android:layout_height="120dp"
+            android:layout_height="124dp"
             android:layout_centerInParent="true">
         </ImageButton>
     </RelativeLayout>

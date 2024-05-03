@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/backgroundColor"
     tools:context=".Pages.MainActivity">
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,9 +29,34 @@
             android:hint="@string/copy_data_of_past_n_days">
         </EditText>
         <Button
+            android:layout_margin="30dp"
             android:id="@+id/copyButton"
             android:text="@string/copy_data"
             style="@style/button1">
         </Button>
+        <LinearLayout
+            android:id="@+id/LL"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/remind_me_in">
+            </TextView>
+            <Spinner
+                android:id="@+id/remind_me_in_spinner"
+                android:entries="@array/reminders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Spinner>
+        </LinearLayout>
+        <Spinner
+            android:id="@+id/language_spinner"
+            android:layout_marginTop="30dp"
+            android:entries="@array/languages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Spinner>
     </LinearLayout>
 </LinearLayout>

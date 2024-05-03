@@ -4,6 +4,7 @@ import static com.example.app.Pages.MainActivity.user;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -95,7 +96,6 @@ public class DiaryFragment extends Fragment {
         postManager = new PostManager(getActivity().getApplication(), user);
         TextView tx = view.findViewById(R.id.tx);
         tx.setEnabled(false);
-        EditText ed = view.findViewById(R.id.ed);
         dayManager = new DayManager(postManager.getUserPosts(-1));
         days = dayManager.getDays();
 
@@ -126,6 +126,34 @@ public class DiaryFragment extends Fragment {
         };
         executorService.execute(onPostListener);*/
 
+        SearchView searchView = view.findViewById(R.id.search_bar);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                try{
+                    dayManager = new DayManager(searchInfo.findWithText(query.toString()));
+                    days = dayManager.getDays();
+                    dayFragment = new DayFragment(days, getActivity().getApplication());
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.fr1, dayFragment);
+                    ft.commit();
+                    return true;
+                }
+                catch (Exception e){
+                    tx.setText(e.toString());
+                    return false;
+                }
+
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        /*
+        EditText ed = view.findViewById(R.id.ed);
 
         ed.addTextChangedListener(new TextWatcher() {
             @Override
@@ -159,7 +187,7 @@ public class DiaryFragment extends Fragment {
                     tx.setText(e.toString());
                 }
             }
-        });
+        });*/
         return view;
     }
 }

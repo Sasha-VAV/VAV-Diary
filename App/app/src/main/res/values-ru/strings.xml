@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VAV Diary</string>
+    <string name="diary">Дневник</string>
+    <string name="create">Создать</string>
+    <string name="profile">Профиль</string>
+    <string name="sign_in">Войти</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="nameTag">Отображаемое имя</string>
+    <string name="hello_blank_fragment">fix</string>
+    <string name="header">Заголовок</string>
+    <string name="type_smth...">Напишите что-нибудь...</string>
+    <string name="send">Отправить</string>
+    <string name="copy_data_of_past_n_days">Скопировать данные за последние N дней</string>
+    <string name="copy_data">Скопировать данные</string>
+    <string name="save_location">Сохранять геолокацию</string>
+    <string name="wrong_login_or_password">Неверный логин или пароль</string>
+    <string name="copied">Скопировано!</string>
+    <string name="you_was_here">Вы были здесь</string>
+    <string name="at">в</string>
+    <string name="logged_out">Вы вышли из аккаунта</string>
+    <string name="this_login_already_exists">Такой логин уже существует</string>
+    <string name="location_error"></string>
+    <string name="latitude">Широта</string>
+    <string name="longitude">Долгота</string>
+    <string name="something_went_wrong">Что-то пошло не так</string>
+    <string name="void_post">Пусто</string>
+    <string name="no_name">Отправил пост без заголовка</string>
+    <string name="number_of_events">Число событий</string>
+    <string name="clear">Очистить</string>
+    <string name="log_out">Выйти из аккаунта</string>
+    <string name="sashavav">Sashavav</string>
+    <string name="last">За последние</string>
+    <string name="days">Дней</string>
+    <string name="find">Найти</string>
+
+    <string name="header_notification">Сохраните информацию</string>
+    <string name="text_notification">Вы попросили вам напомнить</string>
+    <string name="you_will_receive_notification_every">Следующее уведомление через</string>
+    <string name="we_wont_send_notifications_again">Мы больше не будет отправлять вам уведомления</string>
+    <string name="lorem_ipsum">
+        a
+        \n\n
+        lot
+        \n\n
+        of
+        \n\n
+        text
+        \n\n
+        are
+        \n\n
+        here
+        \n\n
+        because
+        \n\n
+        i
+        \n\n
+        need
+        \n\n
+        this
+        \n\n
+        a
+        \n\n
+        lot
+    </string>
+    <string name="remind_me_in">Напоминать мне каждый(ую)</string>
+    <string name="reminder_1_hour">час</string>
+    <string name="reminder_1_day">день</string>
+    <string name="reminder_1_week">неделю</string>
+    <string name="reminder_never">год</string>
+    <string name="reminder_1_min">минуту</string>
+    <string name="send_notifications">Отправлять уведомления</string>
+</resources>

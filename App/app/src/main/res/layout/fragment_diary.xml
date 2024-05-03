@@ -7,7 +7,12 @@
     android:orientation="vertical"
     android:background="@color/backgroundColor"
     tools:context=".Pages.MainActivity">
-    <LinearLayout
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_bar">
+    </androidx.appcompat.widget.SearchView>
+    <!--LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end">
@@ -27,7 +32,7 @@
                 android:src="@drawable/magnifying_glass">
             </ImageView>
         </LinearLayout>
-    </LinearLayout>
+    </LinearLayout-->
     <TextView
         android:id="@+id/tx"
         android:layout_width="match_parent"
@@ -46,8 +51,12 @@
             android:id="@+id/fr1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name = "com.example.app.posts.DayFragment">
+            android:name = "com.example.app.days.DayFragment">
         </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
     </LinearLayout>
 
 </LinearLayout>

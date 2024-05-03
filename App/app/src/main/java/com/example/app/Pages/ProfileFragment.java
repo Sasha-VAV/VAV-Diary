@@ -91,8 +91,7 @@ public class ProfileFragment extends Fragment {
                 SharedPreferences.Editor editor = getActivity().getSharedPreferences(NAME_SP, MODE_PRIVATE).edit();
                 editor.clear();
                 editor.commit();
-                Log.d("ok6", "unlogged");
-                Toast.makeText(getActivity(), "Logged out", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.logged_out, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getActivity(), WelcomeActivity.class);
                 startActivity(intent);

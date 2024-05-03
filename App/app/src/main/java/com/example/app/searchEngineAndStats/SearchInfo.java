@@ -1,5 +1,8 @@
 package com.example.app.searchEngineAndStats;
 
+import static com.example.app.Pages.MainActivity.application;
+
+import com.example.app.R;
 import com.example.app.posts.Post;
 
 import java.util.ArrayList;
@@ -20,7 +23,7 @@ public class SearchInfo {
             k++;
             ids = ids.substring(ids.indexOf("{") + 1);
         }
-        stats.add("Число событий: " + k);
+        stats.add(application.getString(R.string.number_of_events) + ": " + k);
     }
 
     public SearchInfo(ArrayList<Post> posts) {

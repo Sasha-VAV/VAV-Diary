@@ -1,6 +1,7 @@
 package com.example.app.Pages;
 
 import static com.example.app.Pages.DiaryFragment.currentPost;
+import static com.example.app.Pages.MainActivity.application;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -90,16 +91,16 @@ public class PostFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String s = currentPost.getL();
-                String latitude = s.substring(s.indexOf(" ") + 1,s.indexOf("Lo"));
-                String longitude = s.substring(s.indexOf(" ", 15));
-                String label = "Вы были здесь " + currentPost.getDate() +" в " + currentPost.getTime() + "\n" + currentPost.getHead();
+                String latitude = currentPost.getLatitude();
+                String longitude = currentPost.getLongitude();
+                String label = getString(R.string.you_was_here) + " " + currentPost.getDate() + " " + getString(R.string.at) + " " + currentPost.getTime() + "\n" + currentPost.getHead();
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("geo:" + latitude + "," + longitude + "?q=" + latitude + "," + longitude + "(" + label + ")"));
                 try{
                     startActivity(intent);
                 }
                 catch (Exception ignored){
-                    Toast.makeText(getActivity().getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT ).show();
+                    Toast.makeText(getActivity().getApplicationContext(), R.string.something_went_wrong, Toast.LENGTH_SHORT ).show();
                     // Handle the case where Google Maps is not installed
                 }
             }

@@ -109,27 +109,6 @@ public class PostManager {
 
     public ArrayList<Post> getUserPosts(int n){
 
-        /*posts = new ArrayList<>();
-        String s = user.getPostIds();
-        if (Objects.equals(s, ""))
-            return posts;
-        ArrayList<Integer> ids = new ArrayList<>();
-        while (s.length() > 0){
-            int id = Integer.parseInt(s.substring(1, s.indexOf("}")));
-            ids.add(id);
-            s = s.substring(s.indexOf("}") + 1);
-        }
-        if (n == -1)
-            n = ids.size();
-        for (int i = ids.size() - 1; i >ids.size()- n - 1; i--) {
-            if (ids.size()- n - 1 == 0)
-                return posts;
-            int id = ids.get(i);
-            Post post = findPostById(id);
-            if (post != null)
-                posts.add(post);
-        }
-        return posts;*/
         if (posts == null)
             posts = findAllPosts(user.getId());
         ArrayList<Post> arrayList = new ArrayList<>();

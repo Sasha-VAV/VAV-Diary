@@ -92,7 +92,7 @@ public class MainFragment extends Fragment {
                         , sTe = edText.getText().toString()
                         , sTa = edTag.getText().toString();
                 if (sH.equals(""))
-                    sH = "No Name";
+                    sH = getString(R.string.no_name);
                 Post post = new Post(user.getId(), sH, sTa, sTe);
                 postManager.createPost(post);
                 user = userManager.refreshUser();

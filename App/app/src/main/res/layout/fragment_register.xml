@@ -72,11 +72,9 @@
             android:paddingBottom="140dp"
             android:orientation="vertical">
             <Button
-                android:layout_width="280dp"
-                android:layout_height="70dp"
-                android:background="@drawable/button1"
-                android:text="Зарегистрироваться"
-                android:id="@+id/RegisterButton">
+                android:id="@+id/RegisterButton"
+                style="@style/button1"
+                android:text="@string/sign_up">
             </Button>
         </LinearLayout>
 

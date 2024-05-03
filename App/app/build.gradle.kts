@@ -70,4 +70,6 @@ dependencies {
 
     implementation ("androidx.security:security-crypto:1.1.0-alpha06")
     implementation ("androidx.security:security-identity-credential:1.0.0-alpha03")
+
+    implementation("androidx.work:work-runtime:2.9.0")
 }

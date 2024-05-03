@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">VAV Diary</string>
     <string name="diary">Diary</string>
@@ -34,24 +35,7 @@
     <string name="last">last</string>
     <string name="days">Days</string>
     <string name="find">Find</string>
-    <string name="remind_me_in">Remind me every</string>
-    <string-array name="languages">
-        <item>English</item>
-        <item>Русский</item>
-    </string-array>
-    <string name="reminder_1_min">minute</string>
-    <string name="reminder_1_hour">hour</string>
-    <string name="reminder_1_day">day</string>
-    <string name="reminder_1_week">week</string>
-    <string name="reminder_never">year</string>
-    <string-array name="reminders">
-        <item>@string/reminder_1_min</item>
-        <item>@string/reminder_1_hour</item>
-        <item>@string/reminder_1_day</item>
-        <item>@string/reminder_1_week</item>
-        <item>@string/reminder_never</item>
-    </string-array>
-    <string name="send_notifications">Send notifications</string>
+
     <string name="header_notification">Save info</string>
     <string name="text_notification">You asked to remind you</string>
     <string name="you_will_receive_notification_every">Next notification in</string>
@@ -81,4 +65,11 @@
         \n\n
         lot
     </string>
+    <string name="remind_me_in">Remind me every</string>
+    <string name="reminder_1_hour">hour</string>
+    <string name="reminder_1_day">day</string>
+    <string name="reminder_1_week">week</string>
+    <string name="reminder_never">year</string>
+    <string name="reminder_1_min">minute</string>
+    <string name="send_notifications">Send notifications</string>
 </resources>

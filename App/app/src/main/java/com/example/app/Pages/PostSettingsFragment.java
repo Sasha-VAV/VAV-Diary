@@ -1,18 +1,20 @@
 package com.example.app.Pages;
 
-import static android.content.Context.MODE_PRIVATE;
+import static com.example.app.Pages.MainActivity.permissionManager;
+import static com.example.app.Permissions.PermissionManager.REQUEST_CODE_PERMISSIONS;
+import static com.example.app.Permissions.PermissionManager.locationPermissionGranted;
+import static com.example.app.Permissions.PermissionManager.notificationPermissionGranted;
 
-import android.Manifest;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.core.content.ContextCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +25,8 @@ import android.widget.Toast;
 
 import com.example.app.R;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.sql.Time;
+import java.util.Timer;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -42,10 +44,8 @@ public class PostSettingsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private AtomicBoolean isEnded = new AtomicBoolean(false);
 
-
-    private static ArrayList<String> PERMISSIONS = new ArrayList<>();
-    private static String[] permissions;
 
     public PostSettingsFragment() {
         // Required empty public constructor
@@ -78,79 +78,78 @@ public class PostSettingsFragment extends Fragment {
         }
     }
 
+    public static View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_post_settings, container, false);
+        view = inflater.inflate(R.layout.fragment_post_settings, container, false);
+        permissionManager.setActivity(getActivity());
 
-        CheckBox checkBox = view.findViewById(R.id.saveLocation);
-        checkBox.setChecked(MainActivity.isSaveLocation);
+        CheckBox locationCheckbox = view.findViewById(R.id.saveLocation);
+        CheckBox notificationCheckbox = view.findViewById(R.id.sendNotifications);
+        locationCheckbox.setChecked(MainActivity.isSaveLocation);
+        notificationCheckbox.setChecked(MainActivity.isSendNotifications);
         Button saveButton = view.findViewById(R.id.sendButton);
         ImageButton returnButton = view.findViewById(R.id.returnButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
             @Override
             public void onClick(View v) {
-                //TODO request a permission
-                // What will be if you gonna send no permissions
+                permissionManager.setLocation(locationCheckbox.isChecked());
+                permissionManager.setNotifications(notificationCheckbox.isChecked());
+                isEnded.set(true);
+                permissionManager.launch();
 
-                if (checkBox.isChecked()){
-                    PERMISSIONS.add(Manifest.permission.ACCESS_COARSE_LOCATION);
-                    PERMISSIONS.add(Manifest.permission.ACCESS_FINE_LOCATION);
-                    PERMISSIONS.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
-                    if (!locationPermissionGranted()){
-                        askForPermissions();
+                /*final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Do something after 5s = 5000ms
+                        permissionManager.setLocation(locationCheckbox.isChecked());
+                        permissionManager.setNotifications(notificationCheckbox.isChecked());
+                        getActivity().recreate();
                     }
-                    MainActivity.isSaveLocation = true;
-                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences(MainActivity.NAME_SP, MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean("loc", true);
-                    editor.apply();
-                }
-                Navigation.findNavController(view).navigateUp();
+                }, 1000);*/
             }
         });
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigateUp();
+                if (isEnded.get()){
+                    permissionManager.setLocation(locationCheckbox.isChecked());
+                    permissionManager.setNotifications(notificationCheckbox.isChecked());
+                    if (!notificationCheckbox.isChecked())
+                        Toast.makeText(getContext(), R.string.we_wont_send_notifications_again, Toast.LENGTH_SHORT).show();
+                    getActivity().recreate();
+                }
             }
         });
 
         return view;
     }
 
-    private ActivityResultLauncher<String[]> requestLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), permissions -> {
-                AtomicBoolean permissionGranted = new AtomicBoolean(true);
-                permissions.forEach((key, value) -> {
-                    if (Arrays.asList(PERMISSIONS).contains(key) && !value){
-                        Toast.makeText(getActivity(),
-                                key+" "+ value,
-                                Toast.LENGTH_SHORT).show();
-                        permissionGranted.set(false);
-                    }
-                });
-            });
-    public boolean locationPermissionGranted(){
-        AtomicBoolean good = new AtomicBoolean(true);
-        permissions = new String[PERMISSIONS.size()];
-        for (int i = 0; i < PERMISSIONS.size(); i++){
-            permissions[i] = PERMISSIONS.get(i);
-        }
-        Arrays.asList(permissions).forEach(it ->{
-            if (ContextCompat.checkSelfPermission(getActivity(), it) == PackageManager.PERMISSION_DENIED
-                    && (it.equals(Manifest.permission.ACCESS_FINE_LOCATION) || it.equals(Manifest.permission.ACCESS_COARSE_LOCATION))){
-                good.set(false);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_PERMISSIONS){
+            boolean allGranted = true;
+            for (int grantResult : grantResults) {
+                if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                    allGranted = false;
+                    break;
+                }
             }
-        });
-        return good.get();
-    }
-    public void askForPermissions(){
-        permissions = new String[PERMISSIONS.size()];
-        for (int i = 0; i < PERMISSIONS.size(); i++){
-            permissions[i] = PERMISSIONS.get(i);
+            if (allGranted){
+                permissionManager.apply();
+                isEnded.set(true);
+            }
+            else {
+                permissionManager.applyLocation(locationPermissionGranted());
+                permissionManager.applyNotifications(notificationPermissionGranted());
+            }
         }
-        requestLauncher.launch(permissions);
     }
 }

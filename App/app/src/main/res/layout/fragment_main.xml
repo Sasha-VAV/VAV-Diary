@@ -7,75 +7,87 @@
     android:orientation="vertical"
     tools:context=".Pages.MainActivity"
     android:background="@color/backgroundColor">
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left">
-
-            <ImageButton
-                android:id="@+id/importantActions"
-                style="@style/importantIcon">
-            </ImageButton>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right">
-                <ImageButton
-                    android:id="@+id/postSettings"
-                    style="@style/settingsIcon">
-                </ImageButton>
-            </LinearLayout>
-        </LinearLayout>
+        android:layout_height="match_parent">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="left">
-            <EditText
-                android:id="@+id/header_title"
-                style="@style/headerEditText"/>
-            <EditText
-                android:id="@+id/edTag"
-                style="@style/tagEditText">
-            </EditText>
-            <EditText
-                android:id="@+id/text"
-                style="@style/descriptionEditText"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:gravity="top"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-            <Button
-                android:id="@+id/sendButton"
-                style="@style/button1"
-                android:text="@string/send">
-            </Button>
-        </LinearLayout>
-        <LinearLayout
-            android:gravity="center"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <Button
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/clearButton"
-                android:text="Очистить">
-            </Button>
+                android:orientation="vertical"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left">
+
+                    <ImageButton
+                        android:id="@+id/importantActions"
+                        style="@style/importantIcon">
+                    </ImageButton>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+                        <ImageButton
+                            android:id="@+id/postSettings"
+                            style="@style/settingsIcon">
+                        </ImageButton>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left">
+                    <EditText
+                        android:id="@+id/header_title"
+                        style="@style/headerEditText"/>
+                    <EditText
+                        android:id="@+id/edTag"
+                        style="@style/tagEditText">
+                    </EditText>
+                    <EditText
+                        android:id="@+id/text"
+                        style="@style/descriptionEditText"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <Button
+                        android:id="@+id/sendButton"
+                        style="@style/button1"
+                        android:text="@string/send">
+                    </Button>
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/clearButton"
+                        android:text="@string/clear">
+                    </Button>
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="124dp">
+            </LinearLayout>
         </LinearLayout>
-
-
-    </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

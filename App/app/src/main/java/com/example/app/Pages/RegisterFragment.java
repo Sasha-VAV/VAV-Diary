@@ -89,7 +89,7 @@ public class RegisterFragment extends Fragment {
                             String.valueOf(passwordEd.getText()).hashCode()
                             , String.valueOf(nameTagEd.getText()));
                     if (!userManager.createUser(userManager.getCurrentUser()))
-                        Toast.makeText(getActivity(), "This login already exists", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.this_login_already_exists, Toast.LENGTH_SHORT).show();
                     else{
                         MainActivity.user = userManager.getCurrentUser();
                         Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -97,7 +97,7 @@ public class RegisterFragment extends Fragment {
                     }
                 }
                 catch (Exception exception){
-                    Toast.makeText(getActivity(), "This login already exists", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.this_login_already_exists, Toast.LENGTH_SHORT).show();
                 }
 
             }
