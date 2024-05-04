@@ -101,17 +101,6 @@ public class PostSettingsFragment extends Fragment {
                 permissionManager.setNotifications(notificationCheckbox.isChecked());
                 isEnded.set(true);
                 permissionManager.launch();
-
-                /*final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Do something after 5s = 5000ms
-                        permissionManager.setLocation(locationCheckbox.isChecked());
-                        permissionManager.setNotifications(notificationCheckbox.isChecked());
-                        getActivity().recreate();
-                    }
-                }, 1000);*/
             }
         });
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +112,6 @@ public class PostSettingsFragment extends Fragment {
                     permissionManager.setNotifications(notificationCheckbox.isChecked());
                     if (!notificationCheckbox.isChecked())
                         Toast.makeText(getContext(), R.string.we_wont_send_notifications_again, Toast.LENGTH_SHORT).show();
-                    getActivity().recreate();
                 }
             }
         });

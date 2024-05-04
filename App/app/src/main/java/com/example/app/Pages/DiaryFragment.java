@@ -55,6 +55,7 @@ public class DiaryFragment extends Fragment {
     private final ExecutorService executorService = Executors.newFixedThreadPool(10);
     private SearchInfo searchInfo;
     private DayFragment dayFragment;
+    private TextView tx;
 
     public DiaryFragment() {
         // Required empty public constructor
@@ -94,8 +95,7 @@ public class DiaryFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_diary, container, false);
 
         postManager = new PostManager(getActivity().getApplication(), user);
-        TextView tx = view.findViewById(R.id.tx);
-        tx.setEnabled(false);
+        tx = view.findViewById(R.id.tx);
         dayManager = new DayManager(postManager.getUserPosts(-1));
         days = dayManager.getDays();
 
