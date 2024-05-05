@@ -92,6 +92,7 @@ public class LogInFragment extends Fragment {
                 else{
                     userManager.saveUserInCache(user);
                     Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.putExtra("was", 2);
                     startActivity(intent);
                 }
             }

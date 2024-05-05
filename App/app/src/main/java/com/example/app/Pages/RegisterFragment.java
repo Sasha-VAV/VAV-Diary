@@ -93,6 +93,7 @@ public class RegisterFragment extends Fragment {
                     else{
                         MainActivity.user = userManager.getCurrentUser();
                         Intent intent = new Intent(getActivity(), MainActivity.class);
+                        intent.putExtra("was", 2);
                         startActivity(intent);
                     }
                 }

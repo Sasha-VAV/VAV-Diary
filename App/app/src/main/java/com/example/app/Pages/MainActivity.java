@@ -26,6 +26,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+
     public static User user;
     public final static String NAME_SP = "1";
     public static boolean isSaveLocation = false;
@@ -43,17 +44,16 @@ public class MainActivity extends AppCompatActivity {
 
         application = getApplication();
 
-
         SharedPreferences sharedPreferences = getSharedPreferences(NAME_SP, MODE_PRIVATE);
         if (sharedPreferences!= null){
             isSaveLocation = sharedPreferences.getBoolean("loc", false) && PermissionManager.locationPermissionGranted();
             isSendNotifications = sharedPreferences.getBoolean("ntf", false) && PermissionManager.notificationPermissionGranted();
             localization = sharedPreferences.getString("lang","-1");
         }
+        dictionary1 = new HashMap<>();
+        dictionary1.put("Русский","ru");
+        dictionary1.put("English","en");
         if (!Objects.equals(localization, "-1")){
-            dictionary1 = new HashMap<>();
-            dictionary1.put("Русский","ru");
-            dictionary1.put("English","en");
             localization = dictionary1.get(localization);
             if (localization != null){
                 Locale locale = new Locale(localization);
@@ -65,17 +65,19 @@ public class MainActivity extends AppCompatActivity {
                 MyWorker.text = getString(R.string.text_notification);
             }
         }
-
-        setContentView(R.layout.activity_main);
-
-
         UserManager userManager = new UserManager(getApplication());
         if (user == null && userManager.getUserFromCache() == null) {
             Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+            finish();
             startActivity(intent);
         } else if (user == null && userManager.getCurrentUser() != null) {
             user = userManager.getCurrentUser();
         }
+
+
+        setContentView(R.layout.activity_main);
+
+
 
 
 
@@ -87,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
         if (bundle!=null){
             if (bundle.getInt("was") == 1){
                 navController.navigate(R.id.action_mainFragment_to_actionsFragment2);
+            } else if (bundle.getInt("was") == 2) {
+                navController.navigate(R.id.action_mainFragment_to_postSettingsFragment);
             }
         }
 
