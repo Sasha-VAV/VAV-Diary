@@ -158,6 +158,9 @@ public class ActionsFragment extends Fragment {
                     startActivity(intent);
                     getActivity().finish();
                 }
+                else {
+                    delay = -2;
+                }
             }
 
             @Override
@@ -169,7 +172,7 @@ public class ActionsFragment extends Fragment {
             LinearLayout linearLayout = view.findViewById(R.id.LL);
             linearLayout.setVisibility(View.INVISIBLE);
         }
-        else {
+        else if (delay != -2){
             notificationSelector = view.findViewById(R.id.remind_me_in_spinner);
             String[] times = getResources().getStringArray(R.array.reminders);
             dictionary2.put(times[0], "1");
@@ -194,7 +197,7 @@ public class ActionsFragment extends Fragment {
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (delay != -3){
+                if (delay != -3 && delay != -2){
                     delay = Integer.parseInt(dictionary2.get(notificationSelector.getSelectedItem().toString()));
                     if (delay != -1){
                         PeriodicWorkRequest workRequest = new PeriodicWorkRequest.Builder(MyWorker.class, delay, TimeUnit.MINUTES)

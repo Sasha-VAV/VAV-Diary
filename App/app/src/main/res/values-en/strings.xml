@@ -66,10 +66,10 @@
         lot
     </string>
     <string name="remind_me_in">Remind me every</string>
-    <string name="reminder_1_hour">hour</string>
-    <string name="reminder_1_day">day</string>
-    <string name="reminder_1_week">week</string>
-    <string name="reminder_never">year</string>
-    <string name="reminder_1_min">minute</string>
+    <string name="reminder_1_hour">an hour</string>
+    <string name="reminder_1_day">a day</string>
+    <string name="reminder_1_week">a week</string>
+    <string name="reminder_never">a year</string>
+    <string name="reminder_1_min">a minute</string>
     <string name="send_notifications">Send notifications</string>
 </resources>

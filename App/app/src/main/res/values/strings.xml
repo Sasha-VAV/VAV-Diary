@@ -39,11 +39,11 @@
         <item>English</item>
         <item>Русский</item>
     </string-array>
-    <string name="reminder_1_min">minute</string>
-    <string name="reminder_1_hour">hour</string>
-    <string name="reminder_1_day">day</string>
-    <string name="reminder_1_week">week</string>
-    <string name="reminder_never">year</string>
+    <string name="reminder_1_min">a minute</string>
+    <string name="reminder_1_hour">an hour</string>
+    <string name="reminder_1_day">a day</string>
+    <string name="reminder_1_week">a week</string>
+    <string name="reminder_never">a year</string>
     <string-array name="reminders">
         <item>@string/reminder_1_min</item>
         <item>@string/reminder_1_hour</item>
