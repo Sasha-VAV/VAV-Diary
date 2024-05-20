@@ -25,6 +25,7 @@ import androidx.work.Operation;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -159,7 +160,7 @@ public class ActionsFragment extends Fragment {
                     getActivity().finish();
                 }
                 else {
-                    delay = -2;
+                    //delay = -2;
                 }
             }
 
@@ -173,6 +174,7 @@ public class ActionsFragment extends Fragment {
             linearLayout.setVisibility(View.INVISIBLE);
         }
         else if (delay != -2){
+            Log.d("debug", "1");
             notificationSelector = view.findViewById(R.id.remind_me_in_spinner);
             String[] times = getResources().getStringArray(R.array.reminders);
             dictionary2.put(times[0], "1");
@@ -205,8 +207,10 @@ public class ActionsFragment extends Fragment {
                                 .build();
                         WorkManager workManager = WorkManager.getInstance(getActivity().getApplicationContext());
                         workManager.enqueueUniquePeriodicWork("tag", ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE, workRequest);
-                        String s = getString(R.string.you_will_receive_notification_every)
-                                + " " + notificationSelector.getSelectedItem().toString();
+                        String s = getString(R.string.you_will_receive_notification_every) +" a";
+                        if (notificationSelector.getSelectedItem().toString().indexOf("h") == 0)
+                            s += "n";
+                        s += " " + notificationSelector.getSelectedItem().toString();
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("ntfT", notificationSelector.getSelectedItem().toString());
                         editor.apply();
