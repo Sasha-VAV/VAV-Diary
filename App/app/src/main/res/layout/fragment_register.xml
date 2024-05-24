@@ -68,14 +68,36 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:gravity="bottom"
-            android:paddingBottom="140dp"
+            android:gravity="top"
+            android:paddingTop="18dp"
             android:orientation="vertical">
             <Button
                 android:id="@+id/RegisterButton"
                 style="@style/button1"
                 android:text="@string/sign_up">
             </Button>
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/already_have_an_account">
+                </TextView>
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@drawable/text_button"
+                    android:id="@+id/SignInTextButton"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_in">
+                </TextView>
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

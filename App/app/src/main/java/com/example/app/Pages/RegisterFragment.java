@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app.R;
@@ -75,6 +76,7 @@ public class RegisterFragment extends Fragment {
         EditText loginEd = view.findViewById(R.id.loginEd)
                 , passwordEd = view.findViewById(R.id.passwordEd)
                 , nameTagEd = view.findViewById(R.id.nameTagEd);
+        TextView loginTextButton = view.findViewById(R.id.SignInTextButton);
 
         if (mParam1 != null) {
             loginEd.setText(mParam1.substring(0,mParam1.indexOf('|')));
@@ -103,6 +105,17 @@ public class RegisterFragment extends Fragment {
 
             }
         });
+
+        loginTextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = loginEd.getText() + "|" + passwordEd.getText();
+                Bundle bundle = new Bundle();
+                bundle.putString("LP", s);
+                Navigation.findNavController(view).navigate(R.id.action_registerFragment_to_logInFragment, bundle);
+            }
+        });
+
         ImageButton returnButton = view.findViewById(R.id.returnButton);
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override

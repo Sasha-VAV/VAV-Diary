@@ -72,4 +72,6 @@
     <string name="reminder_never">год</string>
     <string name="reminder_1_min">минуту</string>
     <string name="send_notifications">Отправлять уведомления</string>
+    <string name="don_t_have_an_account">Нет аккаунта?</string>
+    <string name="already_have_an_account">Уже есть аккаунт?</string>
 </resources>

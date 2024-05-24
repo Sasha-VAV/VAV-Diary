@@ -23,7 +23,7 @@ public class SearchInfo {
             k++;
             ids = ids.substring(ids.indexOf("{") + 1);
         }
-        stats.add(application.getString(R.string.number_of_events) + ": " + k);
+        stats.add(": " + k);
     }
 
     public SearchInfo(ArrayList<Post> posts) {

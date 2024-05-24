@@ -8,12 +8,15 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.view.DragEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app.R;
@@ -28,7 +31,7 @@ public class LogInFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM1 = "LP";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
@@ -53,7 +56,6 @@ public class LogInFragment extends Fragment {
         LogInFragment fragment = new LogInFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -63,7 +65,6 @@ public class LogInFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -74,10 +75,15 @@ public class LogInFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_log_in, container, false);
 
         Button logInButton = view.findViewById(R.id.LogInButton);
-        Button registerButton = view.findViewById(R.id.RegisterButton);
+        TextView registerTextButton = view.findViewById(R.id.SignUpTextButton);
         EditText loginEd = view.findViewById(R.id.loginEd)
                 , passwordEd = view.findViewById(R.id.passwordEd);
         ImageButton returnButton = view.findViewById(R.id.returnButton);
+
+        if (mParam1 != null) {
+            loginEd.setText(mParam1.substring(0,mParam1.indexOf('|')));
+            passwordEd.setText(mParam1.substring(mParam1.indexOf('|') + 1));
+        }
 
         userManager = new UserManager(getActivity().getApplication());
         logInButton.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +103,9 @@ public class LogInFragment extends Fragment {
                 }
             }
         });
-        registerButton.setOnClickListener(new View.OnClickListener() {
+
+
+        registerTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String s = loginEd.getText() + "|" + passwordEd.getText();
@@ -106,6 +114,15 @@ public class LogInFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_registerFragment, bundle);
             }
         });
+        /*registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = loginEd.getText() + "|" + passwordEd.getText();
+                Bundle bundle = new Bundle();
+                bundle.putString("LP", s);
+                Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_registerFragment, bundle);
+            }
+        });*/
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -25,39 +25,52 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:gravity="center"
-            android:layout_width="match_parent"
+            android:gravity="start"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:gravity="start|center_vertical"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/save_location">
                 </TextView>
-                <CheckBox
-                    android:checked="true"
-                    android:id="@+id/saveLocation"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:gravity="end"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                </CheckBox>
+                    <CheckBox
+                        android:checked="true"
+                        android:id="@+id/saveLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    </CheckBox>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
+                android:gravity="start|center_vertical"
                 android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/send_notifications">
                 </TextView>
-                <CheckBox
-                    android:checked="true"
-                    android:id="@+id/sendNotifications"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:gravity="end"
+                    android:minWidth="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                </CheckBox>
+                    <CheckBox
+                        android:checked="true"
+                        android:id="@+id/sendNotifications"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    </CheckBox>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
         <LinearLayout

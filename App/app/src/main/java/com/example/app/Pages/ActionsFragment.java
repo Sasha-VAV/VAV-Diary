@@ -137,7 +137,16 @@ public class ActionsFragment extends Fragment {
         });
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(NAME_SP, MODE_PRIVATE);
         previousSelection1 = sharedPreferences.getString("lang","-1");
-        languageSelector.setSelection(new ArrayList<>(dictionary1.values()).indexOf(dictionary1.get(previousSelection1)));
+        if (!previousSelection1.equals("-1")){
+            languageSelector.setSelection(new ArrayList<>(dictionary1.values()).indexOf(dictionary1.get(previousSelection1)));
+        }
+        else{
+            Locale systemLocale = getResources().getConfiguration().locale;
+            if (systemLocale.getLanguage().equals("ru"))
+                languageSelector.setSelection(1);
+            else
+                languageSelector.setSelection(0);
+        }
         languageSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -207,9 +216,12 @@ public class ActionsFragment extends Fragment {
                                 .build();
                         WorkManager workManager = WorkManager.getInstance(getActivity().getApplicationContext());
                         workManager.enqueueUniquePeriodicWork("tag", ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE, workRequest);
-                        String s = getString(R.string.you_will_receive_notification_every) +" a";
-                        if (notificationSelector.getSelectedItem().toString().indexOf("h") == 0)
-                            s += "n";
+                        String s = getString(R.string.you_will_receive_notification_every);
+                        if (getString(R.string.you_will_receive_notification_every).indexOf("N") == 0){
+                            s += " a";
+                            if (notificationSelector.getSelectedItem().toString().indexOf("h") == 0)
+                                s += "n";
+                        }
                         s += " " + notificationSelector.getSelectedItem().toString();
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("ntfT", notificationSelector.getSelectedItem().toString());

@@ -2,6 +2,7 @@ package com.example.app.Pages;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.app.Pages.MainActivity.NAME_SP;
+import static com.example.app.Pages.MainActivity.application;
 import static com.example.app.Pages.MainActivity.user;
 
 import android.content.Intent;
@@ -82,7 +83,7 @@ public class ProfileFragment extends Fragment {
         name.setText(user.getName());
         TextView textNumOfPosts = view.findViewById(R.id.NumOfPosts);
         SearchInfo searchInfo = new SearchInfo(user.getPostIds());
-        textNumOfPosts.setText(searchInfo.getStats().get(0));
+        textNumOfPosts.setText(getString(R.string.number_of_events) + searchInfo.getStats().get(0));
 
         Button settingsButton = view.findViewById(R.id.SettingsButton);
         settingsButton.setOnClickListener(new View.OnClickListener() {

@@ -63,19 +63,41 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:gravity="bottom"
-            android:paddingBottom="140dp"
+            android:gravity="top"
+            android:paddingTop="90dp"
             android:orientation="vertical">
             <Button
                 android:id="@+id/LogInButton"
                 android:text="@string/sign_in"
                 style="@style/button1">
             </Button>
-            <Button
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/don_t_have_an_account">
+                </TextView>
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@drawable/text_button"
+                    android:id="@+id/SignUpTextButton"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_up">
+                </TextView>
+            </LinearLayout>
+            <!--Button
                 android:id="@+id/RegisterButton"
                 android:text="@string/sign_up"
                 style="@style/button1">
-            </Button>
+            </Button-->
         </LinearLayout>
 
     </LinearLayout>

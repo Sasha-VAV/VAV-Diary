@@ -58,20 +58,15 @@
                     android:id="@+id/textTime">
                 </TextView>
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black">
-            </View>
             <TextView
+                android:gravity="center"
+                android:layout_margin="20dp"
                 android:id="@+id/header_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:gravity="left"
                 android:textColor="@color/black"
                 android:text="Header"
-                android:textSize="24dp">
+                android:textSize="24sp">
             </TextView>
             <!--ImageButton
                 android:id="@+id/imgButton"
@@ -101,6 +96,10 @@
                 android:text="This is corgi"
                 android:textColor="@color/black">
             </TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
